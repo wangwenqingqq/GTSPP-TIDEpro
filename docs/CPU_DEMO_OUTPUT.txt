@@ -1,0 +1,4 @@
+old epoch: 0 ()
+new epoch: 1 (Hit(source_id=30, intersection=3, union=3),)
+compacted: 2 (Hit(source_id=30, intersection=3, union=3),)
+stale-ancestor mathematical fixture: {'ancestor_lower_bound': 1.0, 'query_radius': 0.1, 'true_distance_to_insert': 0.0, 'stale_ancestor_prunes': True, 'new_object_is_a_hit': True}
