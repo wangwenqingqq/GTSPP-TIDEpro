@@ -175,7 +175,7 @@ def main():
     (output / "summary.json").write_text(json.dumps(summary, indent=2) + "\n")
     for filename, rows in (("queries.csv", samples), ("maintenance.csv", maintenance), ("warmup.csv", warmups)):
         with (output / filename).open("w", newline="") as stream:
-            writer = csv.DictWriter(stream, fieldnames=list(rows[0]))
+            writer = csv.DictWriter(stream, fieldnames=list(rows[0]), lineterminator="\n")
             writer.writeheader(); writer.writerows(rows)
     (output / "input_manifest.json").write_text(json.dumps(source, indent=2) + "\n")
     receipt = {"raw_files": {p.name: {"sha256": digest(p), "bytes": p.stat().st_size}
