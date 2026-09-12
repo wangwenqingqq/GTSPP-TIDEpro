@@ -14,7 +14,8 @@ import time
 
 from build_and_oracle import ROOT, digest, input_hashes
 
-UUID = "GPU-daa88abc-ce4a-aa1c-c896-ae528bf9bce3"
+UUID = None
+GPU_INDEX = None
 
 
 def state():
@@ -30,8 +31,8 @@ def state():
 
 def admit(snapshot):
     gpu = snapshot["gpu"]
-    if len(gpu) != 1 or gpu[0][0] != "1":
-        raise RuntimeError("GPU 1 UUID/index mismatch")
+    if len(gpu) != 1 or gpu[0][0] != str(GPU_INDEX):
+        raise RuntimeError("selected GPU UUID/index mismatch")
     if snapshot["apps"] or int(gpu[0][5]) >= 256 or int(gpu[0][6]) > 1:
         raise RuntimeError("selected GPU not idle; no process will be disturbed")
 
@@ -49,10 +50,14 @@ def stop_own_process(proc):
 
 
 def main():
+    global UUID, GPU_INDEX
     parser = argparse.ArgumentParser()
     parser.add_argument("--input", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--gpu-uuid", required=True)
+    parser.add_argument("--gpu-index", type=int, choices=range(8), required=True)
     args = parser.parse_args()
+    UUID, GPU_INDEX = args.gpu_uuid, args.gpu_index
     data, out = args.input.resolve(), args.output.resolve()
     if not out.is_relative_to(ROOT / "raw_logs"):
         parser.error("output must be a new child of this project's raw_logs")
@@ -70,11 +75,19 @@ def main():
     if digest(binary) != ready["binary_sha256"]:
         raise RuntimeError("binary changed")
     locks = []
-    for path in ("/tmp/tide_surechembl_gpu0123.lock", "/tmp/tide_surechembl_gate6_gpu1.lock"):
-        handle = open(path, "a+")
-        fcntl.flock(handle, fcntl.LOCK_EX | fcntl.LOCK_NB)
-        locks.append(handle)
-    manifest = {"gpu_uuid": UUID, "physical_gpu": 1, "runtime_ordinal": 0,
+    try:
+        for path in ("/tmp/tide_surechembl_gpu0123.lock", f"/tmp/tide_surechembl_gate6_gpu{GPU_INDEX}.lock"):
+            # No O_CREAT on an existing shared lock: compatible with Linux
+            # protected_regular in sticky /tmp. Do not chmod, delete, or replace it.
+            handle = open(path, "r+" if Path(path).exists() else "x+")
+            fcntl.flock(handle, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            locks.append(handle)
+        admit(state())
+    except Exception as exc:
+        (out / "ADMISSION_FAILED.json").write_text(json.dumps({"reason": str(exc), "gpu_uuid": UUID,
+            "gpu_index": GPU_INDEX, "gpu_process_started": False}, indent=2) + "\n")
+        raise
+    manifest = {"gpu_uuid": UUID, "physical_gpu": GPU_INDEX, "runtime_ordinal": 0,
                 "cpu_ready_sha256": digest(ROOT / "build/CPU_READY.json"),
                 "runner_sha256": digest(Path(__file__)), "binary_sha256": ready["binary_sha256"],
                 "host": sp.check_output(["hostname"], text=True).strip(), "wrapper_pid": os.getpid(),
