@@ -79,14 +79,17 @@ struct Maintenance {
   std::vector<std::shared_ptr<Release>> exclusive_releases;
 };
 struct Writer {
-  Arena &arena; cudaStream_t stream=nullptr;
-  explicit Writer(Arena &a):arena(a) {CUDA_CHECK(cudaStreamCreateWithFlags(&stream,cudaStreamNonBlocking));}
-  ~Writer() {if(stream) {cudaStreamSynchronize(stream);cudaStreamDestroy(stream);}}
+  Arena &arena; cudaStream_t stream=nullptr;void *stage=nullptr;
+  explicit Writer(Arena &a):arena(a) {
+    CUDA_CHECK(cudaStreamCreateWithFlags(&stream,cudaStreamNonBlocking));
+    try {CUDA_CHECK(cudaMallocHost(&stage,8*MiB));}catch(...) {cudaStreamDestroy(stream);throw;}
+  }
+  ~Writer() {if(stream) cudaStreamSynchronize(stream);if(stage) cudaFreeHost(stage);if(stream) cudaStreamDestroy(stream);}
   EP build(const EP &old,std::shared_ptr<DB> delta,const std::string &policy,int epoch,Maintenance &m,int fault=0) {
     m.begin=now(); if(!m.arrival) m.arrival=m.begin; m.epoch=epoch; m.policy=policy;
     auto next=std::make_shared<Epoch>(); next->number=epoch; if(old) next->runs=old->runs;
     auto upload=[&](std::shared_ptr<DB> h,int injected) {
-      auto r=std::make_shared<Run>(arena,h,stream,injected);
+      auto r=std::make_shared<Run>(arena,h,stream,stage,injected);
       m.uploaded+=h->ids.size()*42; m.metadata_ms+=r->metadata_ms; m.stage_ms+=r->stage_ms; m.h2d_ms+=r->h2d_ms;
       return r;
     };

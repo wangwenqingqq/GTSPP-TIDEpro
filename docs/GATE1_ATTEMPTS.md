@@ -32,3 +32,14 @@
    uploaded bytes 仍按实际数据算。不增加两档总预算，不改变维护控制规则。
    增加拒绝事件的最大连续空闲块记录。重新编译、重算核对所有 oracle，
    从故障/sanitizer 门禁到所有 rotation 全部重新执行。
+6. `campaign_v3_gpu0`：21 个子进程全部通过，12 个性能进程、69,568 个
+   measured batch（983,040 个逻辑查询），观测总显存均未超限。此为有效
+   第一轮，而非失败尝试。报告保存完整 v3 结果。
+7. v4 单变量普通基线改进（v3 分析后登记）：v3 all-delta shadow Q=1
+   p99 为约 2.4–3.4 ms（static 约 0.17 ms）；顺序 all-delta 总维护时间中
+   约 70.7% 没有被 build/metadata/staging-copy/H2D 子计时解释。源码每次
+   Run 上传都会 `cudaMallocHost/cudaFreeHost`，可能引入共享驱动开销；
+   此时尚不能证明这是尾部的原因。v4 仅把同一 8 MiB pinned staging 提前
+   分配给 Writer 并复用。kernel、arena、控制、输入、输出、发布节奏、预算
+   全部不变。重新生成核对 oracle，完整重跑同一 21 进程协议；不与 v3
+   混样本。它是普通缓冲复用的前后对照，不是新算法，也不是随机交错因果试验。

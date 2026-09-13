@@ -128,7 +128,7 @@ struct Run {
     require(rows<=LARGE_ROWS,"registered run row capacity exceeded");
     return align256(rows*42 >= 256*MiB ? LARGE_ROWS*42 : rows*42);
   }
-  Run(Arena &a,std::shared_ptr<DB> h,cudaStream_t stream,int fault=0):host(std::move(h)) {
+  Run(Arena &a,std::shared_ptr<DB> h,cudaStream_t stream,void *stage,int fault=0):host(std::move(h)) {
     if(fault==1) throw std::runtime_error("injected before allocation");
     double t=now(); metadata=host->view(); metadata_ms=now()-t;
     bytes=footprint(host->ids.size()); storage=std::make_unique<Buffer>(a,bytes);
@@ -136,7 +136,7 @@ struct Run {
     auto n=host->ids.size(); fp=static_cast<std::uint64_t*>(storage->ptr());
     ids=fp+4*n; pc=reinterpret_cast<std::uint16_t*>(ids+n);
     // Bounded pinned chunks avoid cudaMalloc / hidden pageable transfer staging during overlap.
-    void *stage=nullptr; CUDA_CHECK(cudaMallocHost(&stage,8*MiB));
+    require(stage!=nullptr,"writer pinned staging must be preallocated");
     try {
       auto copy=[&](void *dst,const void *src,std::size_t size) {
         for(std::size_t o=0;o<size;o+=8*MiB) {
@@ -150,8 +150,8 @@ struct Run {
       if(fault==3) throw std::runtime_error("injected after partial H2D");
       copy(ids,host->ids.data(),n*8); copy(pc,host->pc.data(),n*2);
       if(fault==4) throw std::runtime_error("injected after full H2D");
-      CUDA_CHECK(cudaFreeHost(stage)); stage=nullptr; a.observe();
-    } catch(...) { cudaStreamSynchronize(stream); if(stage) cudaFreeHost(stage); throw; }
+      a.observe();
+    } catch(...) { cudaStreamSynchronize(stream); throw; }
   }
   ~Run() { storage.reset(); released->at.store(now()); }
 };

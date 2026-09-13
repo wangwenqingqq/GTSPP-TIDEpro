@@ -10,7 +10,7 @@ from build import ROOT, digest, inputs
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--revision", choices=("v2", "v3"), default="v2")
+    parser.add_argument("--revision", choices=("v2", "v3", "v4"), default="v2")
     args = parser.parse_args()
     build = ROOT / "build"
     old = json.loads((build / "CPU_READY.json").read_text())
