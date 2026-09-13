@@ -94,3 +94,11 @@ reader-only。固定 arena 的物理预留直到进程结束才归还 CUDA；这
 [cudaLaunchHostFunc 限制](https://docs.nvidia.com/cuda/archive/13.1.0/cuda-runtime-api/group__CUDART__EXECUTION.html)。
 人工 gate 不进入性能样本；CUDA 不保证不同 stream 必然并发，需以实际
 时间区间重叠来报告曝光，而不能由 stream 数量推断 GPU 并发执行。
+
+## 分配器修订（v2 停止后、v3 全部重跑前）
+
+v2 在 shadow compact 的三代大 run 共存中触发连续块拒绝。总空闲量不能
+代表最大可分配块。因此所有控制统一加普通大块 size class：数据达到
+256 MiB 的 run 保留 10,500,000 × 42 bytes 的固定块（256-byte 对齐），
+其余维持按需块。禁止超过声明最大行数；padding 计入实际 run 占用。
+两档总显存额度不变。上传量仍是实际数据量。新旧分配器样本不合并。

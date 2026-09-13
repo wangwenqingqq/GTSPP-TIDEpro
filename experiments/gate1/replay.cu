@@ -170,6 +170,9 @@ struct Logs {
   }
 };
 void guards(Arena &a,Runtime &rt,Writer &writer,const History &h,const QueryStore<4> &qs,const Oracles &o) {
+  require(Run::footprint(9461367)==Run::footprint(10279473),"large-run size class not stable");
+  bool oversized=false;try {(void)Run::footprint(10500001);}catch(const std::runtime_error&){oversized=true;}
+  require(oversized,"run capacity guard failed");
   auto baseline=a.live(); EP current; Maintenance initial;
   writer.publish(&current,writer.build(nullptr,h[0],"all_delta",0,initial),initial);
   auto steady=a.live();auto identity=current.get();
@@ -211,7 +214,7 @@ void guards(Arena &a,Runtime &rt,Writer &writer,const History &h,const QueryStor
     current.reset();require(!cancelled.expired(),"request did not retain epoch");rt.cancel();
     require(cancelled.expired()&&a.live()==baseline,"in-flight cancellation leaked/reclaimed early");
   } catch(...) {cancel_gate.open();rt.cancel();throw;}
-  std::cout<<"GUARDS_PASS injected=5 budget_refusal=2 overflow=1 pending_GPU_publish=1 cancellation=1 arena_restored=1\n";
+  std::cout<<"GUARDS_PASS injected=5 budget_refusal=2 overflow=1 pending_GPU_publish=1 cancellation=1 arena_restored=1 large_class=1\n";
 }
 void sequential(Arena &a,Runtime &rt,Writer &w,const History &h,const QueryStore<4> &qs,const Oracles &o,
     Logs &logs,int rotation) {

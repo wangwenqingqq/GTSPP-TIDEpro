@@ -97,6 +97,8 @@ struct Arena {
   bool fits(std::size_t n) {
     std::lock_guard<std::mutex> lock(mutex);
     for(auto p:free) if(p.second>=align256(n)) return true;
+    std::size_t largest=0;for(auto p:free) largest=std::max(largest,p.second);
+    events<<now()<<",refuse,"<<largest<<','<<align256(n)<<','<<used<<'\n';
     refused++; return false;
   }
 };
@@ -119,7 +121,13 @@ struct Run {
   std::size_t bytes=0;
   std::uint64_t *fp=nullptr,*ids=nullptr; std::uint16_t *pc=nullptr;
   double metadata_ms=0,stage_ms=0,h2d_ms=0;
-  static std::size_t footprint(std::size_t rows) { return align256(rows*42); }
+  static std::size_t footprint(std::size_t rows) {
+    // Ordinary common size class, fixed 10.5M-row capacity, not a policy-specific optimization.
+    // Equal large-block extents prevent the 9.46M base leaving a hole too small for a 10.28M merged run.
+    constexpr std::size_t LARGE_ROWS=10500000;
+    require(rows<=LARGE_ROWS,"registered run row capacity exceeded");
+    return align256(rows*42 >= 256*MiB ? LARGE_ROWS*42 : rows*42);
+  }
   Run(Arena &a,std::shared_ptr<DB> h,cudaStream_t stream,int fault=0):host(std::move(h)) {
     if(fault==1) throw std::runtime_error("injected before allocation");
     double t=now(); metadata=host->view(); metadata_ms=now()-t;

@@ -17,3 +17,18 @@
    idle 准入；此间隔完全在 C++ 请求/维护计时之外。任何失败 pre 快照保存。
    racecheck 单独识别 hazard summary，memcheck 同时要求明确零泄漏摘要。
    未更改 GPU binary、输入、阈值、控制、显存上限或性能样本选择。
+4. `campaign_v2_gpu0`：全部 fixture/sanitizer/百万行 native gate 通过；首个
+   rotation 的 roomy/constrained 顺序测试也通过。随后 concurrent Q=1 的
+   shadow compact 组因大连续块空间拒绝而整体停止。v2 的按需 256-byte
+   对齐分配使旧 base 块小于增长后大块；即使 arena 总空闲量尚有余量，也
+   不能保证新大 run 的连续分配成功。此轮部分性能日志保留，但不与修订后
+   样本混合或挑选。失败仍未返回不完整查询或超总显存。
+   根据 arena 分配/释放日志重建，失败在 shadow compact 第五次更新：
+   剩余总空间 584,382,208 bytes，最大连续块 431,340,032 bytes，待合并
+   分配需 431,517,440 bytes。因此是可核实的外部碎片，不是整卡容量用尽。
+5. allocator v3：所有策略共同采用一个普通大块 size class：run 的数据
+   达到 256 MiB 后，分配固定 10,500,000 行 × 42 bytes（向上 256-byte 对齐）；
+   更大 run 明确拒绝。padding 属于实际占用并进入 UID/预算/arena 账目；
+   uploaded bytes 仍按实际数据算。不增加两档总预算，不改变维护控制规则。
+   增加拒绝事件的最大连续空闲块记录。重新编译、重算核对所有 oracle，
+   从故障/sanitizer 门禁到所有 rotation 全部重新执行。
