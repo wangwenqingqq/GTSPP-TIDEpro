@@ -95,8 +95,17 @@ def main():
     campaign_start = time.monotonic()
 
     def invoke(name, mode, root, cap=2048, rotation=0, sanitizer=None):
+        # NVML utilization is a trailing sample and may outlive the exited child.
+        # This inter-process quiescence is outside every C++ measurement interval.
+        time.sleep(2)
         pre = state(args.gpu_uuid)
-        admit(pre, args.gpu_index)
+        (out / f"{name}.pre.json").write_text(json.dumps(pre, indent=2) + "\n")
+        try:
+            admit(pre, args.gpu_index)
+        except Exception as exc:
+            (out / f"{name}.ADMISSION_FAILED.json").write_text(json.dumps(
+                {"reason": str(exc), "pre": pre, "gpu_process_started": False}, indent=2) + "\n")
+            raise
         command = [str(binary), "--mode", mode, "--root", str(root), "--output", str(out / name),
                    "--cap-mib", str(cap), "--rotation", str(rotation)]
         if sanitizer:
@@ -133,8 +142,13 @@ def main():
             record["post"] = state(args.gpu_uuid)
             if record["post"]["apps"]:
                 raise RuntimeError("GPU still has live processes after child completion")
-            if sanitizer and "ERROR SUMMARY: 0 errors" not in (out / f"{name}.log").read_text():
-                raise RuntimeError("sanitizer zero-error summary missing")
+            if sanitizer:
+                expected = ("RACECHECK SUMMARY: 0 hazards displayed (0 errors, 0 warnings)"
+                            if sanitizer == "racecheck" else "ERROR SUMMARY: 0 errors")
+                if expected not in (out / f"{name}.log").read_text():
+                    raise RuntimeError("sanitizer zero-error summary missing")
+                if sanitizer == "memcheck" and "LEAK SUMMARY: 0 bytes leaked in 0 allocations" not in (out / f"{name}.log").read_text():
+                    raise RuntimeError("zero-leak summary missing")
         except BaseException as exc:
             record["failure"] = str(exc)
             if proc is not None:
