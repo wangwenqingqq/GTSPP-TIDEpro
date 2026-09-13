@@ -1,10 +1,13 @@
 import unittest
 
-import numpy as np
+try:
+    import numpy as np
+    from experiments.gate1.prepare import queries
+except ModuleNotFoundError:
+    np = None
 
-from experiments.gate1.prepare import queries
 
-
+@unittest.skipIf(np is None, "NumPy required for real-data preparation tests")
 class Gate1QueryTests(unittest.TestCase):
     @staticmethod
     def runs():

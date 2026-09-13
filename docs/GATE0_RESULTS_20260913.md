@@ -4,6 +4,12 @@
 这不是“所有普通策略等价”的证明，也不是对大规模、并发、预算受限维护的反证。
 本轮完成了可复用实验路径和正确性门禁；Pro 提出的核心系统问题仍未闭合。
 
+**2026-09-13 后续计时勘误：** Gate 1 审查发现，本轮 wrapper 每请求重建
+`OwnedHostDB::view()` 的 cumulative metadata，需要 O(N) CPU 扫描，而这段
+工作位于旧 `service_ms` 计时之外。因此下文旧 service 表不是 acquire epoch
+到完整结果返回的端到端延迟；原始数值保持不改，但不得用它们与 Gate 1
+计算加速比。修订口径见 [Gate 1 合同](GATE1_CONTRACT_20260913.md)。
+
 ## 本次确实执行了什么
 
 2026-09-13 01:00–01:01（Asia/Shanghai），pro6000-8、单张 RTX PRO 6000

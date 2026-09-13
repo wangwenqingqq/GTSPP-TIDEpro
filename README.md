@@ -1,23 +1,31 @@
 # GTSPP & TIDEpro
 
-**状态：2026-09-13 已创建私有仓库，并完成首轮百万行、六次累积发布的 GPU 维护控制。不是已经成立的新算法。**
+**状态：2026-09-13 已补齐 Gate 1：千万行、总显存约束、native batch、在途回收及并发对照。不是已经成立的新算法。**
 
 远端为 `wangwenqingqq/GTSPP-TIDEpro`（private）。原 `GTSPP` 未修改。
-本轮使用 pro6000-8 的空闲 GPU 6；完整结果、源文件哈希、CPU/GPU 门禁及
-全部 7,168 个计时样本已归档。实验变更位于 `work/gate0-maintenance-20260913`。
+Gate 0 使用空闲 GPU 6，Gate 1 使用空闲 GPU 0。两轮 Gate 1 有效 campaign
+共 1,966,080 个计时查询完整匹配；失败尝试、前版对照和全部样本均保留。
+实验变更位于 `work/gate0-maintenance-20260913`，PR 不自动合并。
 
 ## 当前结果与下一步
 
-- [Gate 0 结果与边界](docs/GATE0_RESULTS_20260913.md)
+- [Gate 1 结果与结论边界](docs/GATE1_RESULTS_20260913.md)
+- [Gate 1 合同](docs/GATE1_CONTRACT_20260913.md) · [复现](docs/GATE1_REPRODUCE.md) · [尝试记录](docs/GATE1_ATTEMPTS.md)
+- [Gate 1 汇总](results/gate1_20260913/summary.json) · [pinned staging 单变量对照](results/gate1_staging_ablation_20260913.json)
+- [Gate 0 结果与计时勘误](docs/GATE0_RESULTS_20260913.md)
 - [冻结实验合同及资源修订](docs/GATE0_RUN_CARD_20260913.md)
 - [复现步骤](docs/GATE0_REPRODUCE.md) · [尝试记录](docs/GATE0_ATTEMPTS.md)
 - [机器可读汇总](results/gate0_20260913/summary.json)
 
-六次真实到达的一致 ID 抽样，996,854 → 1,082,990 行；同 kernel 比较
-不合并、周期合并、大小分层合并、完全压实。完整 CPU 结果逐条一致，
-memcheck/synccheck 均 0 errors。这个 Q=1、非并发、小规模试验中，
-完全压实没有稳定查询收益；不能据此证明更大规模/预算受限/并发条件等价。
-先不引入新维护机制，下一轮补强执行层及显存/回收计量，再扩规模和并发。
+Gate 1 为 9,461,367 → 10,279,473 行，Q=1/8/64，1,280/2,048 MiB 总预算，
+四个共同普通控制；memcheck/full leak-check、synccheck、racecheck 及
+GPU pending-reader/失败回滚通过。Q=8/64 完全压实带来的查询延迟差约
+1.2–2.3%，却有较高维护成本。all-delta shadow 的 Q=1 p99 比值，在仅复用
+pinned staging 后从 17.57 回落到 1.09（后者区间含 1）。不能拿原来的大尖峰
+证明新布局必要性。仍未覆盖 41M/2048-bit/开放队列稳态及独立开发 trace 调参。
+
+重要勘误：Gate 0 service 未计入每请求 O(N) bounds-metadata CPU 扫描；
+旧数字不是完整请求端到端延迟，不与 Gate 1 计算加速比。
 
 ## 起始包的历史边界
 
@@ -38,7 +46,7 @@ python3 -B -m unittest discover -s tests -v
 python3 -B -m examples.exact_release_demo
 ```
 
-起始包在 Python 3.13.5 上报告 **24 项 CPU 测试**。历史报告见 [CPU_TEST_RESULTS](docs/CPU_TEST_RESULTS.txt)，示例见 [CPU_DEMO_OUTPUT](docs/CPU_DEMO_OUTPUT.txt)。本轮在 Python 3.10 中重跑并增加 7 项测试，**31 项通过**。新增输入准备测试使用 NumPy；缺少 NumPy 时会明确跳过这 5 项。CPU 参考不代替 CUDA 验证。
+起始包在 Python 3.13.5 上报告 **24 项 CPU 测试**。历史报告见 [CPU_TEST_RESULTS](docs/CPU_TEST_RESULTS.txt)，示例见 [CPU_DEMO_OUTPUT](docs/CPU_DEMO_OUTPUT.txt)。Gate 0 扩为 31 项，Gate 1 再加 9 项，当前 **40 项通过**。实数据准备测试使用 NumPy；缺少 NumPy 时会明确跳过对应 9 项。CPU 参考不代替 CUDA 验证。
 
 ## 研究文件
 
