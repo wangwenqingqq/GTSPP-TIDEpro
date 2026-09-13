@@ -70,5 +70,27 @@ driver 等观察开销，留 64 MiB 余量）。若 context 基线不允许装�
 空闲 GPU 0 的本地协调锁并复查 UUID/进程。既有 TIDE global lock 和对应单卡
 lock 均保持 nonblocking，不替换、不 chmod、不删除。每 GPU 子进程最多
 10 分钟，首轮 GPU 总命令最多 30 分钟；CPU 准备/全 oracle 各最多 10 分钟。
-不动其他任务，不改时钟/功率、不启端口。任何正确性、超预算或外来占用失败
-停止本次计时，保留失败记录，再决定最小修订，不能用重跑挑选漂亮结果。
+ 不动其他任务，不改时钟/功率、不启端口。任何正确性、超预算或外来占用失败
+ 停止本次计时，保留失败记录，再决定最小修订，不能用重跑挑选漂亮结果。
+
+## 实现细化（首个 GPU 调用前）
+
+使用一次登记锁对 acquire/register 与 publish 排序，原子 shared ownership
+保留完整请求所有权。发布时 UID 集合按当前 writer epoch / 当前在途 reader
+分类，显存余额单列 writer 暂存及 shadow 固定基库的其他持有，不把它们叫成
+reader-only。固定 arena 的物理预留直到进程结束才归还 CUDA；这里的逐 run
+实际回收是地址区间可重新分配，不是把整卡占用降下来。
+
+并发每组为单 reader 的 closed-loop 256 个 batch；第 16/48/80/112/144/176
+个完成后的下一次调度触发六个维护作业。query queue=0 是闭环设计，不代表
+开放队列无排队；维护队列独立计时。CPU oracle 比较在请求服务计时之外，
+会产生调度间隙，完整请求/维护时间戳用于核实实际重叠。静态/shadow/growth
+每次重新建 base；shadow 内部继续执行同一 writer 版本链，读者保持初始版本。
+
+模块先预热再固定 arena，预留额外空间遵循 NVIDIA 的
+[CUDA lazy-loading 说明](https://docs.nvidia.com/cuda/cuda-programming-guide/04-special-topics/lazy-loading.html)。
+正确性 gate 的新 GPU 数据提前全部准备完毕；host callback 仅等 CPU 指针
+发布，释放 gate 前不调用任何可能等待该 stream 的 CUDA 操作，遵循
+[cudaLaunchHostFunc 限制](https://docs.nvidia.com/cuda/archive/13.1.0/cuda-runtime-api/group__CUDART__EXECUTION.html)。
+人工 gate 不进入性能样本；CUDA 不保证不同 stream 必然并发，需以实际
+时间区间重叠来报告曝光，而不能由 stream 数量推断 GPU 并发执行。

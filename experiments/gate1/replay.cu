@@ -74,7 +74,7 @@ struct Maintenance {
   std::string policy,mode,status="published"; int epoch=0,batch=0,rotation=0,merges=0,deferred=0;
   double arrival=0,begin=0,ready=0,published=0,writer_done=0,build_ms=0,metadata_ms=0,stage_ms=0,h2d_ms=0;
   std::size_t uploaded=0,merge_rw=0,rows=0,runs=0,shared=0,current_only=0,retired_only=0;
-  std::size_t reader_only_at_publish=0,unreferenced_at_publish=0,live_at_publish=0;
+  std::size_t reader_only_at_publish=0,unreferenced_at_publish=0,live_at_publish=0,other_held_at_publish=0;
   std::shared_ptr<EpochInfo> retired;
   std::vector<std::shared_ptr<Release>> exclusive_releases;
 };
@@ -108,19 +108,28 @@ struct Writer {
   }
   void publish(EP *slot,EP next,Maintenance &m) {
     auto old=std::atomic_load(slot); m.rows=next->rows();m.runs=next->runs.size();
-    std::set<std::uint64_t> before,after;
-    if(old) for(auto &r:old->runs) before.insert(r->uid);
-    for(auto &r:next->runs) {after.insert(r->uid); if(before.count(r->uid)) m.shared+=r->bytes;else m.current_only+=r->bytes;}
+    std::set<std::uint64_t> after;
+    for(auto &r:next->runs) after.insert(r->uid);
     if(old && old!=next) {m.retired=old->info;
       for(auto &r:old->runs) if(!after.count(r->uid)) {m.retired_only+=r->bytes;m.exclusive_releases.push_back(r->released);}
     }
-    std::atomic_store(slot,next); m.published=now();
-    if(old && old!=next) {
-      // Acquire-vs-publish is not a global snapshot; classification is sampled immediately after the atomic store.
-      if(old->info->readers.load()>0) m.reader_only_at_publish=m.retired_only;
-      else m.unreferenced_at_publish=m.retired_only;
+    {
+      std::lock_guard<std::mutex> lock(publication_mutex);
+      std::atomic_store(slot,next); m.published=now();
+      auto reader=registered_reader.lock();std::set<std::uint64_t> read_ids;
+      if(reader) for(auto &r:reader->runs) {
+        read_ids.insert(r->uid);if(!after.count(r->uid)) m.reader_only_at_publish+=r->bytes;
+      }
+      for(auto &r:next->runs) {if(read_ids.count(r->uid)) m.shared+=r->bytes;else m.current_only+=r->bytes;}
+      if(old && old!=next) for(auto &r:old->runs)
+        if(!after.count(r->uid)&&!read_ids.count(r->uid)) m.unreferenced_at_publish+=r->bytes;
+      m.live_at_publish=arena.live();
+      auto classified=Runtime::bytes()+m.shared+m.current_only+m.reader_only_at_publish;
+      require(m.live_at_publish>=classified,"unique-owner byte balance underflow");
+      // Includes writer temporaries and, in shadow, the deliberately retained fixed base.
+      m.other_held_at_publish=m.live_at_publish-classified;
     }
-    m.live_at_publish=arena.live(); old.reset();m.writer_done=now();arena.observe();
+    old.reset();m.writer_done=now();arena.observe();
   }
 };
 std::vector<std::string> policies(int rotation) {
@@ -136,7 +145,7 @@ struct Logs {
     maint<<"rotation,mode,policy,batch,epoch,status,rows,runs,merges,deferred,begin_ms,ready_ms,published_ms,writer_done_ms,"
       "host_build_ms,metadata_ms,staging_ms,h2d_ms,uploaded_bytes,merge_host_rw_bytes,shared_bytes,current_only_bytes,"
       "retired_only_bytes,reader_only_at_publish_bytes,unreferenced_at_publish_bytes,live_at_publish_bytes,"
-      "last_reader_device_done_ms,old_epoch_owner_released_ms,exclusive_actual_reclaim_ms,lifecycle_ms,arrival_ms,maintenance_queue_ms\n";
+      "last_reader_device_done_ms,old_epoch_owner_released_ms,exclusive_actual_reclaim_ms,lifecycle_ms,arrival_ms,maintenance_queue_ms,other_held_at_publish_bytes\n";
   }
   void request(const Result &r,const std::string &p,const std::string &mode,int rotation,const std::string &phase,
       double queue=0,int backlog=0) {
@@ -157,7 +166,7 @@ struct Logs {
       <<m.merges<<','<<m.deferred<<','<<m.begin<<','<<m.ready<<','<<m.published<<','<<m.writer_done<<','<<m.build_ms<<','
       <<m.metadata_ms<<','<<m.stage_ms<<','<<m.h2d_ms<<','<<m.uploaded<<','<<m.merge_rw<<','<<m.shared<<','<<m.current_only<<','
       <<m.retired_only<<','<<m.reader_only_at_publish<<','<<m.unreferenced_at_publish<<','<<m.live_at_publish<<','<<last<<','
-      <<owner<<','<<reclaimed<<','<<std::max({reclaimed,owner,m.writer_done})-m.begin<<','<<m.arrival<<','<<m.begin-m.arrival<<'\n';
+      <<owner<<','<<reclaimed<<','<<std::max({reclaimed,owner,m.writer_done})-m.begin<<','<<m.arrival<<','<<m.begin-m.arrival<<','<<m.other_held_at_publish<<'\n';
   }
 };
 void guards(Arena &a,Runtime &rt,Writer &writer,const History &h,const QueryStore<4> &qs,const Oracles &o) {

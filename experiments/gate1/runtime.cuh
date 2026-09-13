@@ -155,6 +155,10 @@ struct Epoch {
   std::size_t rows() const { std::size_t n=0; for(auto &r:runs) n+=r->host->ids.size(); return n; }
 };
 using EP=std::shared_ptr<Epoch>;
+// One reader in this harness. Registration and publication share a short CPU lock,
+// making the UID ownership classification an instantaneous, auditable snapshot.
+std::mutex publication_mutex;
+std::weak_ptr<Epoch> registered_reader;
 struct Gate {
   std::mutex mutex; std::condition_variable cv; bool release=false;
   void open() { std::lock_guard<std::mutex> lock(mutex); release=true; cv.notify_all(); }
@@ -193,7 +197,11 @@ struct Runtime {
   void cancel() {
     if(gate) {gate->open(); gate=nullptr;}
     if(stream) CUDA_CHECK(cudaStreamSynchronize(stream));
-    if(acquired) { acquired->info->last_reader_done.store(now()); acquired->info->readers--; acquired.reset(); }
+    if(acquired) {
+      {std::lock_guard<std::mutex> lock(publication_mutex);
+        acquired->info->last_reader_done.store(now()); acquired->info->readers--; registered_reader.reset();}
+      acquired.reset();
+    }
   }
   ~Runtime() {
     try { cancel(); } catch(...) { std::terminate(); }
@@ -203,8 +211,9 @@ struct Runtime {
   void begin(EP *slot,const QueryStore<4> &queries,int first,int qn,int threshold,Gate *g=nullptr,
       unsigned capacity_override=0) {
     require(!acquired,"runtime allows only one in-flight batch");
-    pending=Result{}; pending.begin=now(); acquired=std::atomic_load(slot);
-    require(bool(acquired),"no published epoch"); acquired->info->readers++;
+    pending=Result{}; pending.begin=now();
+    {std::lock_guard<std::mutex> lock(publication_mutex); acquired=std::atomic_load(slot);
+      require(bool(acquired),"no published epoch"); acquired->info->readers++; registered_reader=acquired;}
     require(qn>=1 && qn<=64,"bad batch size");
     pending.epoch=acquired->number; pending.rows=acquired->rows(); pending.runs=acquired->runs.size();
     pending.batch=qn; pending.first=first; pending.threshold=threshold;
@@ -250,7 +259,8 @@ struct Runtime {
       for(int j=0;j<pending.batch;++j) require(pending.hits[j].size()==hc[j+2],"batch counter mismatch");
     }
     // Releasing the acquired owner is part of measured request completion, including last-owner destruction.
-    acquired->info->readers--; acquired.reset(); pending.end=now(); float ms=0; CUDA_CHECK(cudaEventElapsedTime(&ms,start,stop));
+    {std::lock_guard<std::mutex> lock(publication_mutex);acquired->info->readers--;registered_reader.reset();}
+    acquired.reset(); pending.end=now(); float ms=0; CUDA_CHECK(cudaEventElapsedTime(&ms,start,stop));
     pending.kernel_ms=ms; gate=nullptr; return std::move(pending);
   }
   Result run(EP *slot,const QueryStore<4> &qs,int first,int qn,int t) {
