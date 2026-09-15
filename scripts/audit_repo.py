@@ -52,3 +52,17 @@ if ablation.exists():
         if hashlib.sha256((ROOT / relative).read_bytes()).hexdigest() != evidence[key]:
             raise SystemExit("Staging ablation identity mismatch: " + relative)
     print("PASS: staging ablation script and both input summaries")
+gate2 = ROOT / "results/gate2_20260915/evidence_receipt.json"
+if gate2.exists():
+    evidence = json.loads(gate2.read_text())
+    expected = dict(evidence["source_hashes"])
+    expected["experiments/gate2/analyze.py"] = evidence["analysis_sha256"]
+    for relative, sha in expected.items():
+        if hashlib.sha256((ROOT / relative).read_bytes()).hexdigest() != sha:
+            raise SystemExit("Gate2 source/analysis identity mismatch: " + relative)
+    for name, sha in evidence["result_files"].items():
+        if hashlib.sha256((gate2.parent / name).read_bytes()).hexdigest() != sha:
+            raise SystemExit("Gate2 result identity mismatch: " + name)
+    if hashlib.sha256((gate2.parent / "frozen.json").read_bytes()).hexdigest() != evidence["frozen_sha256"]:
+        raise SystemExit("Gate2 frozen selection identity mismatch")
+    print(f"PASS: Gate2 {len(expected)} source/analysis and {len(evidence['result_files'])} result identities")

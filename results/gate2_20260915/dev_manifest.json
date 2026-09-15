@@ -1,0 +1,388 @@
+{
+  "scope": "Gate2 ID-disjoint development; same six release dates as previously observed test",
+  "seed": 20260913,
+  "modulus": 4,
+  "remainder": 1,
+  "fingerprint_bits": 256,
+  "sources": [
+    {
+      "relative_path": "data/prepared/snapshots/2026-06-01/id_i64.bin",
+      "bytes": 302794160,
+      "mtime_ns": 1787966703306539568,
+      "sha256": "1f149018487d42bbb62390dca04abcff01b997b6420faa79e58731cae0407dae"
+    },
+    {
+      "relative_path": "data/prepared/snapshots/2026-06-01/fp_u64x4.bin",
+      "bytes": 1211176640,
+      "mtime_ns": 1787966703293539917,
+      "sha256": "1ceb7dc33ed10b1fce2dc3e43bd8dbb557b0a2420f9164eb085312f7372d9c4e"
+    },
+    {
+      "relative_path": "data/prepared/snapshots/2026-06-01/popcnt_u16.bin",
+      "bytes": 75698540,
+      "mtime_ns": 1787966703309539487,
+      "sha256": "3b16da3421d5686e502fb16df0224aa73b0733775fe25991ad74c37d41c72fcc"
+    },
+    {
+      "relative_path": "data/prepared/transition_queries/2026-06-01_to_2026-06-15/delta_u64x6.bin",
+      "bytes": 1050720,
+      "mtime_ns": 1787963697708020746,
+      "sha256": "89bebea2f9286ee2a48fe3cdd1d6f1c2b534ad63772ed963a3bb4da7b99e239e"
+    },
+    {
+      "relative_path": "data/prepared/transition_queries/2026-06-15_to_2026-07-01/delta_u64x6.bin",
+      "bytes": 147277344,
+      "mtime_ns": 1787963703313509885,
+      "sha256": "1819ba252b488be0b42355c75f40c8955612899c0da642408aae8ed32cef0327"
+    },
+    {
+      "relative_path": "data/prepared/transition_queries/2026-07-01_to_2026-07-17/delta_u64x6.bin",
+      "bytes": 339504,
+      "mtime_ns": 1787963703440095801,
+      "sha256": "c09c63f6fb96d82b0f2b641f20d926ffa9553c598ce61a0a534b7ea7b6e4a8ac"
+    },
+    {
+      "relative_path": "data/prepared/transition_queries/2026-07-17_to_2026-08-04/delta_u64x6.bin",
+      "bytes": 6848352,
+      "mtime_ns": 1787963703664505264,
+      "sha256": "395c199f1936a6ae764bb003fd4a6c59d2d68cd12e790476f7374488a31d4fde"
+    },
+    {
+      "relative_path": "data/prepared/transition_queries/2026-08-04_to_2026-08-18/delta_u64x6.bin",
+      "bytes": 809424,
+      "mtime_ns": 1787963703697251446,
+      "sha256": "21cab00860dc46dc7b436e1a1c5ff3e3204446ad28db14ccb89f2b88f7d61f0c"
+    },
+    {
+      "relative_path": "data/prepared/transition_queries/2026-08-18_to_2026-08-25/delta_u64x6.bin",
+      "bytes": 996480,
+      "mtime_ns": 1787963703729680064,
+      "sha256": "bcef37b5a3dd1d25c5e2f33a1c0acb8274bd518f639c159688cd5a6b9b2ce291"
+    }
+  ],
+  "dates": [
+    "2026-06-01",
+    "2026-06-15",
+    "2026-07-01",
+    "2026-07-17",
+    "2026-08-04",
+    "2026-08-18",
+    "2026-08-25"
+  ],
+  "runs": [
+    {
+      "file": "run0.bin",
+      "rows": 9459008,
+      "bytes": 454032384,
+      "sha256": "c3f9756a68d4d1e64d3612b70f6bdc48892b044e0a8ace8cd9d5d4ad27e34ab8"
+    },
+    {
+      "file": "run1.bin",
+      "rows": 5579,
+      "bytes": 267792,
+      "sha256": "8385bac025a1f98f6b2dc790b59891850838bddd6dec8ca1973aeeeb29191798"
+    },
+    {
+      "file": "run2.bin",
+      "rows": 768662,
+      "bytes": 36895776,
+      "sha256": "3d2524a9b612dfe9b6514b14d3461a4828245efae224d2f8b281a6c566f935f7"
+    },
+    {
+      "file": "run3.bin",
+      "rows": 1758,
+      "bytes": 84384,
+      "sha256": "50850c887715dd8496469e531ee85c88a42b1c02ca1c2a2ef9f63fee174e71a3"
+    },
+    {
+      "file": "run4.bin",
+      "rows": 35904,
+      "bytes": 1723392,
+      "sha256": "4c9eefcf2490a73a04318e0ad6e90829d657c4177231c0e3fbb1d1c3c836b0fd"
+    },
+    {
+      "file": "run5.bin",
+      "rows": 4135,
+      "bytes": 198480,
+      "sha256": "bbab90b921318065f06b5bfefb313ca313aa1530239c35e722bc864b4cf30d9b"
+    },
+    {
+      "file": "run6.bin",
+      "rows": 5266,
+      "bytes": 252768,
+      "sha256": "7e9863ab83da573d88e1482d25d3824c3b13f17841811d299fe213b72e54d0f7"
+    }
+  ],
+  "query_labels": [
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 1,
+      "date": "2026-06-15"
+    },
+    {
+      "arrival_epoch": 1,
+      "date": "2026-06-15"
+    },
+    {
+      "arrival_epoch": 1,
+      "date": "2026-06-15"
+    },
+    {
+      "arrival_epoch": 1,
+      "date": "2026-06-15"
+    },
+    {
+      "arrival_epoch": 2,
+      "date": "2026-07-01"
+    },
+    {
+      "arrival_epoch": 2,
+      "date": "2026-07-01"
+    },
+    {
+      "arrival_epoch": 2,
+      "date": "2026-07-01"
+    },
+    {
+      "arrival_epoch": 2,
+      "date": "2026-07-01"
+    },
+    {
+      "arrival_epoch": 3,
+      "date": "2026-07-17"
+    },
+    {
+      "arrival_epoch": 3,
+      "date": "2026-07-17"
+    },
+    {
+      "arrival_epoch": 3,
+      "date": "2026-07-17"
+    },
+    {
+      "arrival_epoch": 3,
+      "date": "2026-07-17"
+    },
+    {
+      "arrival_epoch": 4,
+      "date": "2026-08-04"
+    },
+    {
+      "arrival_epoch": 4,
+      "date": "2026-08-04"
+    },
+    {
+      "arrival_epoch": 4,
+      "date": "2026-08-04"
+    },
+    {
+      "arrival_epoch": 4,
+      "date": "2026-08-04"
+    },
+    {
+      "arrival_epoch": 5,
+      "date": "2026-08-18"
+    },
+    {
+      "arrival_epoch": 5,
+      "date": "2026-08-18"
+    },
+    {
+      "arrival_epoch": 5,
+      "date": "2026-08-18"
+    },
+    {
+      "arrival_epoch": 5,
+      "date": "2026-08-18"
+    },
+    {
+      "arrival_epoch": 6,
+      "date": "2026-08-25"
+    },
+    {
+      "arrival_epoch": 6,
+      "date": "2026-08-25"
+    },
+    {
+      "arrival_epoch": 6,
+      "date": "2026-08-25"
+    },
+    {
+      "arrival_epoch": 6,
+      "date": "2026-08-25"
+    },
+    {
+      "arrival_epoch": 6,
+      "date": "2026-08-25"
+    },
+    {
+      "arrival_epoch": 6,
+      "date": "2026-08-25"
+    },
+    {
+      "arrival_epoch": 6,
+      "date": "2026-08-25"
+    },
+    {
+      "arrival_epoch": 6,
+      "date": "2026-08-25"
+    },
+    {
+      "arrival_epoch": 6,
+      "date": "2026-08-25"
+    },
+    {
+      "arrival_epoch": 6,
+      "date": "2026-08-25"
+    },
+    {
+      "arrival_epoch": 6,
+      "date": "2026-08-25"
+    },
+    {
+      "arrival_epoch": 6,
+      "date": "2026-08-25"
+    }
+  ],
+  "test_manifest": {
+    "relative_path": "MANIFEST.json",
+    "bytes": 8275,
+    "mtime_ns": 1789271307866428169,
+    "sha256": "0abfad0980e254f61bfe4565ee9a5c2b2124bf19cf0bcad9a5e238573087997d"
+  },
+  "ID_disjoint": true,
+  "queries": {
+    "file": "queries.bin",
+    "rows": 64,
+    "bytes": 3072,
+    "sha256": "214776a941c1ecec645a7d2e98e247c44ddc3ebe3d80b43670c8f6cfd4c9c869"
+  },
+  "wall_s": 9.33273033099249
+}

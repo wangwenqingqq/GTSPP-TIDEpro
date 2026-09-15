@@ -1,0 +1,381 @@
+{
+  "scope": "Gate1 consistent-ID finite six-transition sample, not steady state",
+  "seed": 20260913,
+  "modulus": 4,
+  "fingerprint_bits": 256,
+  "sources": [
+    {
+      "relative_path": "data/prepared/snapshots/2026-06-01/id_i64.bin",
+      "bytes": 302794160,
+      "mtime_ns": 1787966703306539568,
+      "sha256": "1f149018487d42bbb62390dca04abcff01b997b6420faa79e58731cae0407dae"
+    },
+    {
+      "relative_path": "data/prepared/snapshots/2026-06-01/fp_u64x4.bin",
+      "bytes": 1211176640,
+      "mtime_ns": 1787966703293539917,
+      "sha256": "1ceb7dc33ed10b1fce2dc3e43bd8dbb557b0a2420f9164eb085312f7372d9c4e"
+    },
+    {
+      "relative_path": "data/prepared/snapshots/2026-06-01/popcnt_u16.bin",
+      "bytes": 75698540,
+      "mtime_ns": 1787966703309539487,
+      "sha256": "3b16da3421d5686e502fb16df0224aa73b0733775fe25991ad74c37d41c72fcc"
+    },
+    {
+      "relative_path": "data/prepared/transition_queries/2026-06-01_to_2026-06-15/delta_u64x6.bin",
+      "bytes": 1050720,
+      "mtime_ns": 1787963697708020746,
+      "sha256": "89bebea2f9286ee2a48fe3cdd1d6f1c2b534ad63772ed963a3bb4da7b99e239e"
+    },
+    {
+      "relative_path": "data/prepared/transition_queries/2026-06-15_to_2026-07-01/delta_u64x6.bin",
+      "bytes": 147277344,
+      "mtime_ns": 1787963703313509885,
+      "sha256": "1819ba252b488be0b42355c75f40c8955612899c0da642408aae8ed32cef0327"
+    },
+    {
+      "relative_path": "data/prepared/transition_queries/2026-07-01_to_2026-07-17/delta_u64x6.bin",
+      "bytes": 339504,
+      "mtime_ns": 1787963703440095801,
+      "sha256": "c09c63f6fb96d82b0f2b641f20d926ffa9553c598ce61a0a534b7ea7b6e4a8ac"
+    },
+    {
+      "relative_path": "data/prepared/transition_queries/2026-07-17_to_2026-08-04/delta_u64x6.bin",
+      "bytes": 6848352,
+      "mtime_ns": 1787963703664505264,
+      "sha256": "395c199f1936a6ae764bb003fd4a6c59d2d68cd12e790476f7374488a31d4fde"
+    },
+    {
+      "relative_path": "data/prepared/transition_queries/2026-08-04_to_2026-08-18/delta_u64x6.bin",
+      "bytes": 809424,
+      "mtime_ns": 1787963703697251446,
+      "sha256": "21cab00860dc46dc7b436e1a1c5ff3e3204446ad28db14ccb89f2b88f7d61f0c"
+    },
+    {
+      "relative_path": "data/prepared/transition_queries/2026-08-18_to_2026-08-25/delta_u64x6.bin",
+      "bytes": 996480,
+      "mtime_ns": 1787963703729680064,
+      "sha256": "bcef37b5a3dd1d25c5e2f33a1c0acb8274bd518f639c159688cd5a6b9b2ce291"
+    }
+  ],
+  "dates": [
+    "2026-06-01",
+    "2026-06-15",
+    "2026-07-01",
+    "2026-07-17",
+    "2026-08-04",
+    "2026-08-18",
+    "2026-08-25"
+  ],
+  "runs": [
+    {
+      "file": "run0.bin",
+      "rows": 9461367,
+      "bytes": 454145616,
+      "sha256": "6c3ba6cb01bdaed723625bd3fe36199d06c3f41fa264dab893ff2fb49c73fef4"
+    },
+    {
+      "file": "run1.bin",
+      "rows": 5450,
+      "bytes": 261600,
+      "sha256": "76ce5a8b8890630d6b1371ad1d81ee0f6fab13659794c5f4d88aa38a853f188b"
+    },
+    {
+      "file": "run2.bin",
+      "rows": 765847,
+      "bytes": 36760656,
+      "sha256": "170143029206a76ff2a00f4ba90e7524446375bfdccebdc8e70c6902ac93a35b"
+    },
+    {
+      "file": "run3.bin",
+      "rows": 1780,
+      "bytes": 85440,
+      "sha256": "f2b898746bfab0e10ac7e557c027539860c1e4c83b883afb777be2383d28716a"
+    },
+    {
+      "file": "run4.bin",
+      "rows": 35549,
+      "bytes": 1706352,
+      "sha256": "84bfbdc764d66abe3ecf5c7af5309eedb01aa56b00d52920b0694608cc6fcc23"
+    },
+    {
+      "file": "run5.bin",
+      "rows": 4230,
+      "bytes": 203040,
+      "sha256": "24da0a36711d8675a7950bd5f4669f561d46772f1e0af6a2b27f3722fa41fce5"
+    },
+    {
+      "file": "run6.bin",
+      "rows": 5250,
+      "bytes": 252000,
+      "sha256": "f62b342afc9025e2100d03eff7798e61860d5f031029bc698422b30b273ace24"
+    }
+  ],
+  "query_labels": [
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 0,
+      "date": "2026-06-01"
+    },
+    {
+      "arrival_epoch": 1,
+      "date": "2026-06-15"
+    },
+    {
+      "arrival_epoch": 1,
+      "date": "2026-06-15"
+    },
+    {
+      "arrival_epoch": 1,
+      "date": "2026-06-15"
+    },
+    {
+      "arrival_epoch": 1,
+      "date": "2026-06-15"
+    },
+    {
+      "arrival_epoch": 2,
+      "date": "2026-07-01"
+    },
+    {
+      "arrival_epoch": 2,
+      "date": "2026-07-01"
+    },
+    {
+      "arrival_epoch": 2,
+      "date": "2026-07-01"
+    },
+    {
+      "arrival_epoch": 2,
+      "date": "2026-07-01"
+    },
+    {
+      "arrival_epoch": 3,
+      "date": "2026-07-17"
+    },
+    {
+      "arrival_epoch": 3,
+      "date": "2026-07-17"
+    },
+    {
+      "arrival_epoch": 3,
+      "date": "2026-07-17"
+    },
+    {
+      "arrival_epoch": 3,
+      "date": "2026-07-17"
+    },
+    {
+      "arrival_epoch": 4,
+      "date": "2026-08-04"
+    },
+    {
+      "arrival_epoch": 4,
+      "date": "2026-08-04"
+    },
+    {
+      "arrival_epoch": 4,
+      "date": "2026-08-04"
+    },
+    {
+      "arrival_epoch": 4,
+      "date": "2026-08-04"
+    },
+    {
+      "arrival_epoch": 5,
+      "date": "2026-08-18"
+    },
+    {
+      "arrival_epoch": 5,
+      "date": "2026-08-18"
+    },
+    {
+      "arrival_epoch": 5,
+      "date": "2026-08-18"
+    },
+    {
+      "arrival_epoch": 5,
+      "date": "2026-08-18"
+    },
+    {
+      "arrival_epoch": 6,
+      "date": "2026-08-25"
+    },
+    {
+      "arrival_epoch": 6,
+      "date": "2026-08-25"
+    },
+    {
+      "arrival_epoch": 6,
+      "date": "2026-08-25"
+    },
+    {
+      "arrival_epoch": 6,
+      "date": "2026-08-25"
+    },
+    {
+      "arrival_epoch": 6,
+      "date": "2026-08-25"
+    },
+    {
+      "arrival_epoch": 6,
+      "date": "2026-08-25"
+    },
+    {
+      "arrival_epoch": 6,
+      "date": "2026-08-25"
+    },
+    {
+      "arrival_epoch": 6,
+      "date": "2026-08-25"
+    },
+    {
+      "arrival_epoch": 6,
+      "date": "2026-08-25"
+    },
+    {
+      "arrival_epoch": 6,
+      "date": "2026-08-25"
+    },
+    {
+      "arrival_epoch": 6,
+      "date": "2026-08-25"
+    },
+    {
+      "arrival_epoch": 6,
+      "date": "2026-08-25"
+    }
+  ],
+  "queries": {
+    "file": "queries.bin",
+    "rows": 64,
+    "bytes": 3072,
+    "sha256": "cc0470a90f30d141b9a06c61dff4dbda19725a34b8de65a43238774097cf47ba"
+  },
+  "fixture_scope": "capped real-data correctness fixture; no timing claim",
+  "prepare_wall_s": 8.531136683071963
+}
