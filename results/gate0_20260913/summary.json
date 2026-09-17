@@ -1,0 +1,585 @@
+{
+  "scope": "sampled history, Q=1, sequential only",
+  "gpu": {
+    "index": 6,
+    "uuid": "GPU-865ae1f0-780e-d04c-5ec3-4deccea65f82",
+    "name": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+    "driver": "590.48.01",
+    "total_memory_mib": 97887
+  },
+  "arrival_rows": [
+    996854,
+    584,
+    80753,
+    202,
+    3612,
+    434,
+    551
+  ],
+  "final_rows": 1082990,
+  "measurements": {
+    "fresh_processes": 4,
+    "complete_measured_queries": 7168,
+    "complete_warmup_queries": 1792,
+    "fixture_queries_including_sanitizers": 5376,
+    "old_epoch_checks_measured_processes": 192,
+    "old_epoch_checks_fixture_processes": 144,
+    "maintenance_events_including_initialization": 112,
+    "gpu_memcheck": "0 errors",
+    "gpu_synccheck": "0 errors",
+    "overflow_and_empty_slice_guards": "pass",
+    "all_control_candidate_counts_and_outputs_equal": true,
+    "gpu_wrapper_wall_s": 59.454644188983366
+  },
+  "policy_totals": {
+    "all_delta": {
+      "final_runs": 7,
+      "query_service_median_ms": 0.0395685,
+      "query_kernel_median_ms": 0.009056000038981438,
+      "mean_candidate_rows": 280521.4192708333,
+      "mean_tail_threads": 589.2473958333334,
+      "mean_descriptor_bytes": 154.89583333333334,
+      "max_peak_tracked_device_bytes": 46536812,
+      "max_observed_cuda_used_bytes": 649986048,
+      "max_process_rss_kib": 273356,
+      "maintenance_totals_by_process": [
+        {
+          "total_ms": 1.122616,
+          "host_build_ms": 0.0,
+          "upload_ms": 1.1169470000000001,
+          "uploaded_bytes": 3617712.0,
+          "merge_host_read_write_bytes": 0.0,
+          "merges": 0.0
+        },
+        {
+          "total_ms": 1.9919010000000001,
+          "host_build_ms": 0.0,
+          "upload_ms": 1.987134,
+          "uploaded_bytes": 3617712.0,
+          "merge_host_read_write_bytes": 0.0,
+          "merges": 0.0
+        },
+        {
+          "total_ms": 1.196721,
+          "host_build_ms": 0.0,
+          "upload_ms": 1.1894590000000003,
+          "uploaded_bytes": 3617712.0,
+          "merge_host_read_write_bytes": 0.0,
+          "merges": 0.0
+        },
+        {
+          "total_ms": 2.0023069999999996,
+          "host_build_ms": 0.0,
+          "upload_ms": 1.995568,
+          "uploaded_bytes": 3617712.0,
+          "merge_host_read_write_bytes": 0.0,
+          "merges": 0.0
+        }
+      ]
+    },
+    "periodic2": {
+      "final_runs": 1,
+      "query_service_median_ms": 0.0390595,
+      "query_kernel_median_ms": 0.00886400043964386,
+      "mean_candidate_rows": 280521.4192708333,
+      "mean_tail_threads": 196.58072916666666,
+      "mean_descriptor_bytes": 55.729166666666664,
+      "max_peak_tracked_device_bytes": 92022392,
+      "max_observed_cuda_used_bytes": 702414848,
+      "max_process_rss_kib": 274672,
+      "maintenance_totals_by_process": [
+        {
+          "total_ms": 116.03023200000001,
+          "host_build_ms": 89.399781,
+          "upload_ms": 26.367367,
+          "uploaded_bytes": 139831524.0,
+          "merge_host_read_write_bytes": 272427624.0,
+          "merges": 3.0
+        },
+        {
+          "total_ms": 134.28337399999998,
+          "host_build_ms": 106.30980600000001,
+          "upload_ms": 27.679118,
+          "uploaded_bytes": 139831524.0,
+          "merge_host_read_write_bytes": 272427624.0,
+          "merges": 3.0
+        },
+        {
+          "total_ms": 122.342873,
+          "host_build_ms": 95.137273,
+          "upload_ms": 26.884671,
+          "uploaded_bytes": 139831524.0,
+          "merge_host_read_write_bytes": 272427624.0,
+          "merges": 3.0
+        },
+        {
+          "total_ms": 110.22911500000002,
+          "host_build_ms": 84.009599,
+          "upload_ms": 25.976354,
+          "uploaded_bytes": 139831524.0,
+          "merge_host_read_write_bytes": 272427624.0,
+          "merges": 3.0
+        }
+      ]
+    },
+    "size_tiered": {
+      "final_runs": 4,
+      "query_service_median_ms": 0.0390875,
+      "query_kernel_median_ms": 0.008911999873816967,
+      "mean_candidate_rows": 280521.4192708333,
+      "mean_tail_threads": 394.5807291666667,
+      "mean_descriptor_bytes": 109.0625,
+      "max_peak_tracked_device_bytes": 49751408,
+      "max_observed_cuda_used_bytes": 652083200,
+      "max_process_rss_kib": 274488,
+      "maintenance_totals_by_process": [
+        {
+          "total_ms": 3.2547689999999996,
+          "host_build_ms": 1.132274,
+          "upload_ms": 1.9353870000000002,
+          "uploaded_bytes": 7235424.0,
+          "merge_host_read_write_bytes": 7235424.0,
+          "merges": 3.0
+        },
+        {
+          "total_ms": 4.686091,
+          "host_build_ms": 1.8031949999999999,
+          "upload_ms": 2.702157,
+          "uploaded_bytes": 7235424.0,
+          "merge_host_read_write_bytes": 7235424.0,
+          "merges": 3.0
+        },
+        {
+          "total_ms": 3.124207,
+          "host_build_ms": 0.907167,
+          "upload_ms": 2.009131,
+          "uploaded_bytes": 7235424.0,
+          "merge_host_read_write_bytes": 7235424.0,
+          "merges": 3.0
+        },
+        {
+          "total_ms": 4.908726000000001,
+          "host_build_ms": 1.969142,
+          "upload_ms": 2.7603450000000005,
+          "uploaded_bytes": 7235424.0,
+          "merge_host_read_write_bytes": 7235424.0,
+          "merges": 3.0
+        }
+      ]
+    },
+    "compact": {
+      "final_runs": 1,
+      "query_service_median_ms": 0.040011000000000005,
+      "query_kernel_median_ms": 0.008960000239312649,
+      "mean_candidate_rows": 280521.4192708333,
+      "mean_tail_threads": 125.24739583333333,
+      "mean_descriptor_bytes": 40,
+      "max_peak_tracked_device_bytes": 92022392,
+      "max_observed_cuda_used_bytes": 702414848,
+      "max_process_rss_kib": 274164,
+      "maintenance_totals_by_process": [
+        {
+          "total_ms": 213.851528,
+          "host_build_ms": 164.140942,
+          "upload_ms": 49.31218,
+          "uploaded_bytes": 272478864.0,
+          "merge_host_read_write_bytes": 537722304.0,
+          "merges": 6.0
+        },
+        {
+          "total_ms": 202.633394,
+          "host_build_ms": 152.28578400000004,
+          "upload_ms": 49.955453,
+          "uploaded_bytes": 272478864.0,
+          "merge_host_read_write_bytes": 537722304.0,
+          "merges": 6.0
+        },
+        {
+          "total_ms": 220.28061399999999,
+          "host_build_ms": 162.78717500000002,
+          "upload_ms": 57.062555999999994,
+          "uploaded_bytes": 272478864.0,
+          "merge_host_read_write_bytes": 537722304.0,
+          "merges": 6.0
+        },
+        {
+          "total_ms": 264.39327399999996,
+          "host_build_ms": 207.741566,
+          "upload_ms": 55.234337999999994,
+          "uploaded_bytes": 272478864.0,
+          "merge_host_read_write_bytes": 537722304.0,
+          "merges": 6.0
+        }
+      ]
+    }
+  },
+  "paired_comparisons": {
+    "all_updated_epochs": {
+      "all_delta": {
+        "70": {
+          "service_ms_policy_over_compact": {
+            "process_ratios": [
+              1.039305647433274,
+              0.9795273617851881,
+              1.0231587965203643,
+              0.9560693542961117
+            ],
+            "geomean": 0.9989599449684736,
+            "process_log_t95": [
+              0.9395627165598924,
+              1.0621121443656214
+            ]
+          },
+          "kernel_ms_policy_over_compact": {
+            "process_ratios": [
+              1.0876069196132543,
+              0.9665490809182798,
+              1.041362611283873,
+              0.9762892026863198
+            ],
+            "geomean": 1.0167614816682093,
+            "process_log_t95": [
+              0.93045210767355,
+              1.1110769722355698
+            ]
+          }
+        },
+        "80": {
+          "service_ms_policy_over_compact": {
+            "process_ratios": [
+              1.017165740801665,
+              0.9884005709426523,
+              1.0203155471309255,
+              0.9412096045797
+            ],
+            "geomean": 0.9912572839346722,
+            "process_log_t95": [
+              0.9340089917205426,
+              1.0520145005708215
+            ]
+          },
+          "kernel_ms_policy_over_compact": {
+            "process_ratios": [
+              1.086941048123649,
+              0.9754721943371198,
+              1.0459510504425316,
+              0.9634795785791231
+            ],
+            "geomean": 1.0167020277681535,
+            "process_log_t95": [
+              0.9280080774000051,
+              1.1138728621457037
+            ]
+          }
+        }
+      },
+      "periodic2": {
+        "70": {
+          "service_ms_policy_over_compact": {
+            "process_ratios": [
+              1.0133869624137868,
+              1.0451432085269832,
+              0.9976514854252884,
+              0.9107046635103976
+            ],
+            "geomean": 0.9904370600716467,
+            "process_log_t95": [
+              0.9014060425251319,
+              1.0882615865491234
+            ]
+          },
+          "kernel_ms_policy_over_compact": {
+            "process_ratios": [
+              1.0439358524258402,
+              1.0266115286119417,
+              0.9806454250718188,
+              0.909749284810187
+            ],
+            "geomean": 0.9888454507209812,
+            "process_log_t95": [
+              0.8965949170929367,
+              1.0905876296756039
+            ]
+          }
+        },
+        "80": {
+          "service_ms_policy_over_compact": {
+            "process_ratios": [
+              1.005970947669908,
+              1.0459250267262536,
+              1.0035563368707188,
+              0.9193951628556124
+            ],
+            "geomean": 0.9926187885228054,
+            "process_log_t95": [
+              0.9101796974293381,
+              1.082524760892038
+            ]
+          },
+          "kernel_ms_policy_over_compact": {
+            "process_ratios": [
+              1.0606820475097227,
+              1.0399863486102339,
+              0.9789272627727266,
+              0.9014432401070374
+            ],
+            "geomean": 0.9932885213442363,
+            "process_log_t95": [
+              0.8841690602804746,
+              1.115874928174081
+            ]
+          }
+        }
+      },
+      "size_tiered": {
+        "70": {
+          "service_ms_policy_over_compact": {
+            "process_ratios": [
+              1.0195547307345112,
+              0.9836289525080839,
+              1.0169903300296124,
+              0.9102571277682971
+            ],
+            "geomean": 0.9815912758971891,
+            "process_log_t95": [
+              0.9023629369257387,
+              1.0677759396901805
+            ]
+          },
+          "kernel_ms_policy_over_compact": {
+            "process_ratios": [
+              1.0634511954805925,
+              0.97047941952921,
+              1.0264745973399698,
+              0.9047206929028402
+            ],
+            "geomean": 0.9894449947292668,
+            "process_log_t95": [
+              0.884347471368767,
+              1.1070325062156046
+            ]
+          }
+        },
+        "80": {
+          "service_ms_policy_over_compact": {
+            "process_ratios": [
+              1.0075306676073348,
+              0.9934116633266254,
+              1.020697871665974,
+              0.9153275553286222
+            ],
+            "geomean": 0.9833662949348939,
+            "process_log_t95": [
+              0.9095137487117467,
+              1.0632156703333753
+            ]
+          },
+          "kernel_ms_policy_over_compact": {
+            "process_ratios": [
+              1.0482791735717993,
+              0.9900148627847034,
+              1.05332282138876,
+              0.8986036163196706
+            ],
+            "geomean": 0.9955477198152515,
+            "process_log_t95": [
+              0.8851334121580031,
+              1.1197354532272754
+            ]
+          }
+        }
+      }
+    },
+    "final_epoch": {
+      "all_delta": {
+        "70": {
+          "service_ms_policy_over_compact": {
+            "process_ratios": [
+              1.038270401474165,
+              0.9290842757051941,
+              1.0206503247224024,
+              0.9734622685882088
+            ],
+            "geomean": 0.9894421815473027,
+            "process_log_t95": [
+              0.9137154112775266,
+              1.071445023846414
+            ]
+          },
+          "kernel_ms_policy_over_compact": {
+            "process_ratios": [
+              1.0842968620397129,
+              0.9484246900055854,
+              1.010654442737771,
+              0.9957178821303266
+            ],
+            "geomean": 1.0086082404917078,
+            "process_log_t95": [
+              0.92357568021106,
+              1.1014696516860456
+            ]
+          }
+        },
+        "80": {
+          "service_ms_policy_over_compact": {
+            "process_ratios": [
+              1.0513821697047152,
+              0.9887545130314579,
+              1.0278959493820718,
+              0.9862159135626132
+            ],
+            "geomean": 1.0131938891058037,
+            "process_log_t95": [
+              0.9642802901181164,
+              1.0645886548148755
+            ]
+          },
+          "kernel_ms_policy_over_compact": {
+            "process_ratios": [
+              1.1702091309191158,
+              0.9892517553711203,
+              1.0472889614828158,
+              1.0206646804697799
+            ],
+            "geomean": 1.05470251390398,
+            "process_log_t95": [
+              0.9388889468611039,
+              1.1848018837098309
+            ]
+          }
+        }
+      },
+      "periodic2": {
+        "70": {
+          "service_ms_policy_over_compact": {
+            "process_ratios": [
+              1.0080957588609845,
+              0.9391914425374985,
+              0.9804183202869337,
+              0.9065234646153818
+            ],
+            "geomean": 0.9577708071033573,
+            "process_log_t95": [
+              0.889008433265284,
+              1.0318517627218984
+            ]
+          },
+          "kernel_ms_policy_over_compact": {
+            "process_ratios": [
+              1.0079348239493906,
+              0.9464558685371476,
+              0.9662843859409141,
+              0.8704668735302233
+            ],
+            "geomean": 0.9464496331053861,
+            "process_log_t95": [
+              0.8580375298883411,
+              1.0439717107967164
+            ]
+          }
+        },
+        "80": {
+          "service_ms_policy_over_compact": {
+            "process_ratios": [
+              1.0099295315569914,
+              1.0125430330387213,
+              0.9827433824569854,
+              0.9812322402085143
+            ],
+            "geomean": 0.9965041798929286,
+            "process_log_t95": [
+              0.9699257007779014,
+              1.0238109782508642
+            ]
+          },
+          "kernel_ms_policy_over_compact": {
+            "process_ratios": [
+              1.0595815596679887,
+              1.02875017723714,
+              0.9571980087890422,
+              0.9251750621936664
+            ],
+            "geomean": 0.991214176484889,
+            "process_log_t95": [
+              0.8970577798928744,
+              1.0952533556778765
+            ]
+          }
+        }
+      },
+      "size_tiered": {
+        "70": {
+          "service_ms_policy_over_compact": {
+            "process_ratios": [
+              1.0144965194007844,
+              0.9592099922324641,
+              1.0547489343019094,
+              0.9263050411129172
+            ],
+            "geomean": 0.9874539345192315,
+            "process_log_t95": [
+              0.9007579855362609,
+              1.0824941754105144
+            ]
+          },
+          "kernel_ms_policy_over_compact": {
+            "process_ratios": [
+              1.010208791431871,
+              0.9918031953715466,
+              1.0434303728109808,
+              0.9212085922989178
+            ],
+            "geomean": 0.990636955691391,
+            "process_log_t95": [
+              0.9108252686590997,
+              1.0774421963789493
+            ]
+          }
+        },
+        "80": {
+          "service_ms_policy_over_compact": {
+            "process_ratios": [
+              0.9981322395236917,
+              0.9978759574737467,
+              1.0170797534348888,
+              0.9689572900159624
+            ],
+            "geomean": 0.9953620340973576,
+            "process_log_t95": [
+              0.9641478206412074,
+              1.0275868053754798
+            ]
+          },
+          "kernel_ms_policy_over_compact": {
+            "process_ratios": [
+              1.0253888476743713,
+              1.0280968174922822,
+              1.0447970653565481,
+              0.9682627279012981
+            ],
+            "geomean": 1.0162181347284804,
+            "process_log_t95": [
+              0.9638108324778768,
+              1.071475088836726
+            ]
+          }
+        }
+      }
+    }
+  },
+  "estimator": "Geometric mean paired-query latency ratio within each process, then 4 process replicates; df=3 log-t interval. Ratio policy/compact >1 means compact faster.",
+  "limitations": [
+    "sequential, not sustained concurrent service",
+    "Q=1 only, 256-bit, thresholds .7/.8",
+    "consistent-ID sampled finite history; not the 41M full corpus",
+    "controls are predeclared, not tuned on a separate development trace",
+    "budget is not binding; no near-capacity evidence",
+    "host bucket merge is a reference control, not optimized GPU compaction",
+    "256 MiB is explicit data/workspace allocation only, not a whole-VRAM cap; observed whole-device used memory reaches about 670 MiB",
+    "maintenance total_ms ends at publish readiness, excludes later old-reader checks and old-owner reclamation; not full lifecycle latency",
+    "queries come from sampled arrival cohorts, not an external holdout",
+    "scan bytes are logical fp+popcount loads, not measured DRAM traffic",
+    "old_epoch_logical_bytes includes shared data and is not exclusive unreclaimed bytes",
+    "four short processes on a shared host do not establish production stability"
+  ]
+}

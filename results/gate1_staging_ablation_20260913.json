@@ -1,0 +1,690 @@
+{
+  "change": "Only move 8 MiB pinned staging registration/unregistration from each Run upload to Writer lifetime",
+  "fixed_visible_batch_semantics_compared": 92320,
+  "maintenance_work_events_compared": 1248,
+  "workload_counts_per_campaign": {
+    "measured_batches": 69568,
+    "sequential_measured_queries": 86016,
+    "concurrent_measured_queries": 897024,
+    "all_logged_complete_queries": 1084416,
+    "maintenance_events": 1248,
+    "performance_fresh_processes": 12
+  },
+  "comparison": {
+    "1": {
+      "all_delta": {
+        "per_run_pinning_shadow_over_static_service": {
+          "process_ratios": [
+            1.1612635507170572,
+            1.1839747280409278,
+            1.1461757409458262,
+            1.1876316311381194
+          ],
+          "geomean": 1.1696382137897043,
+          "process_log_t95": [
+            1.1388387575062755,
+            1.2012706295251212
+          ]
+        },
+        "reused_pinning_shadow_over_static_service": {
+          "process_ratios": [
+            1.0370366977563286,
+            1.0124080612803097,
+            1.0219709908597785,
+            1.024381729143673
+          ],
+          "geomean": 1.0239117526563464,
+          "process_log_t95": [
+            1.0079172635481095,
+            1.0401600559327548
+          ]
+        },
+        "per_run_pinning_shadow_over_static_p99": {
+          "process_ratios": [
+            18.385958237256975,
+            19.280558575814478,
+            13.887277081971952,
+            19.379786097682693
+          ],
+          "geomean": 17.5749051656042,
+          "process_log_t95": [
+            13.651111216913254,
+            22.62653103267468
+          ]
+        },
+        "reused_pinning_shadow_over_static_p99": {
+          "process_ratios": [
+            1.0246321361737034,
+            1.037576519252557,
+            1.0383385898022544,
+            1.266381037446332
+          ],
+          "geomean": 1.0873588044866742,
+          "process_log_t95": [
+            0.9247610419038084,
+            1.278545609210119
+          ]
+        },
+        "p99_ratio_of_ratios": 0.061869967105981395
+      },
+      "periodic2": {
+        "per_run_pinning_shadow_over_static_service": {
+          "process_ratios": [
+            1.0794370134237068,
+            1.0980495612523664,
+            1.0595090510364669,
+            1.0549212287900709
+          ],
+          "geomean": 1.0728425454506423,
+          "process_log_t95": [
+            1.0418658171516808,
+            1.1047402730571068
+          ]
+        },
+        "reused_pinning_shadow_over_static_service": {
+          "process_ratios": [
+            1.0271102707146196,
+            1.014649556739502,
+            1.0149490990536134,
+            0.9091259346109318
+          ],
+          "geomean": 0.9902625676912156,
+          "process_log_t95": [
+            0.9040046935657742,
+            1.0847509531199693
+          ]
+        },
+        "per_run_pinning_shadow_over_static_p99": {
+          "process_ratios": [
+            12.448881055046543,
+            6.759279964158173,
+            5.630566724961785,
+            5.939865095892054
+          ],
+          "geomean": 7.283495577190425,
+          "process_log_t95": [
+            4.071629957527921,
+            13.029010095790042
+          ]
+        },
+        "reused_pinning_shadow_over_static_p99": {
+          "process_ratios": [
+            1.048887882544606,
+            1.0481709435064541,
+            0.9751040655579851,
+            0.9839180458442749
+          ],
+          "geomean": 1.0134276970710452,
+          "process_log_t95": [
+            0.951705996114171,
+            1.0791522816753532
+          ]
+        },
+        "p99_ratio_of_ratios": 0.13914029140688658
+      },
+      "size_tiered": {
+        "per_run_pinning_shadow_over_static_service": {
+          "process_ratios": [
+            1.0710795678354703,
+            1.0652918398717777,
+            1.0794667880820028,
+            1.0658296484553225
+          ],
+          "geomean": 1.0704018579063572,
+          "process_log_t95": [
+            1.0600112496499396,
+            1.0808943186100712
+          ]
+        },
+        "reused_pinning_shadow_over_static_service": {
+          "process_ratios": [
+            1.0020946040722227,
+            1.0087898721964668,
+            0.9828901563785126,
+            1.0078521713998558
+          ],
+          "geomean": 1.0003519306157558,
+          "process_log_t95": [
+            0.9812701616159498,
+            1.0198047634901242
+          ]
+        },
+        "per_run_pinning_shadow_over_static_p99": {
+          "process_ratios": [
+            10.684250398257587,
+            9.72373316634767,
+            6.838384456619426,
+            9.283466637679627
+          ],
+          "geomean": 9.011772015311838,
+          "process_log_t95": [
+            6.628234563215391,
+            12.252438274689121
+          ]
+        },
+        "reused_pinning_shadow_over_static_p99": {
+          "process_ratios": [
+            1.044312764769863,
+            0.9698996220228892,
+            1.112346553924299,
+            1.0127435851021236
+          ],
+          "geomean": 1.0335327617690286,
+          "process_log_t95": [
+            0.9429905667163551,
+            1.1327684574507733
+          ]
+        },
+        "p99_ratio_of_ratios": 0.11468696278744739
+      },
+      "compact": {
+        "per_run_pinning_shadow_over_static_service": {
+          "process_ratios": [
+            1.0276337463915397,
+            1.0295519581946142,
+            1.0301480556746774,
+            1.0433479168563438
+          ],
+          "geomean": 1.032651681972755,
+          "process_log_t95": [
+            1.021296922525312,
+            1.0441326834162967
+          ]
+        },
+        "reused_pinning_shadow_over_static_service": {
+          "process_ratios": [
+            0.9951951142989307,
+            1.0045279886746272,
+            0.9963335116228528,
+            1.0178173942350741
+          ],
+          "geomean": 1.0034280123755381,
+          "process_log_t95": [
+            0.9870179335464875,
+            1.0201109238229467
+          ]
+        },
+        "per_run_pinning_shadow_over_static_p99": {
+          "process_ratios": [
+            1.0046495849379755,
+            1.022695413408035,
+            1.028533926198225,
+            1.136252684802748
+          ],
+          "geomean": 1.04679976221295,
+          "process_log_t95": [
+            0.9582056960141725,
+            1.1435850848384865
+          ]
+        },
+        "reused_pinning_shadow_over_static_p99": {
+          "process_ratios": [
+            0.9640073518682694,
+            1.0019989767143012,
+            0.9660069718661715,
+            1.008899612237088
+          ],
+          "geomean": 0.9850175309951095,
+          "process_log_t95": [
+            0.9482911753714178,
+            1.023166261130374
+          ]
+        },
+        "p99_ratio_of_ratios": 0.9409798956323491
+      }
+    },
+    "8": {
+      "all_delta": {
+        "per_run_pinning_shadow_over_static_service": {
+          "process_ratios": [
+            1.1044648169125404,
+            1.1056393163059013,
+            1.088099786995773,
+            1.0900895353801485
+          ],
+          "geomean": 1.0970440437827635,
+          "process_log_t95": [
+            1.0824053048463744,
+            1.1118807609410704
+          ]
+        },
+        "reused_pinning_shadow_over_static_service": {
+          "process_ratios": [
+            1.0041391909932929,
+            1.0018841571071626,
+            0.9880332300761148,
+            0.9994699078008812
+          ],
+          "geomean": 0.9983623053753343,
+          "process_log_t95": [
+            0.9870056404528919,
+            1.0098496421327436
+          ]
+        },
+        "per_run_pinning_shadow_over_static_p99": {
+          "process_ratios": [
+            3.138571195456441,
+            2.9461591403644345,
+            2.5526234400666348,
+            2.94205106139918
+          ],
+          "geomean": 2.8867308030108645,
+          "process_log_t95": [
+            2.512043783861534,
+            3.317304731146789
+          ]
+        },
+        "reused_pinning_shadow_over_static_p99": {
+          "process_ratios": [
+            1.0027637091802757,
+            1.0002248962206721,
+            0.9965644931929573,
+            1.000810757878671
+          ],
+          "geomean": 1.0000884478547232,
+          "process_log_t95": [
+            0.9959740539947283,
+            1.0042198383792067
+          ]
+        },
+        "p99_ratio_of_ratios": 0.34644326613746923
+      },
+      "periodic2": {
+        "per_run_pinning_shadow_over_static_service": {
+          "process_ratios": [
+            1.0345907643089842,
+            1.0311082495320318,
+            1.0328998852983775,
+            1.033351890268442
+          ],
+          "geomean": 1.0329869417649116,
+          "process_log_t95": [
+            1.03069369683519,
+            1.03528528905659
+          ]
+        },
+        "reused_pinning_shadow_over_static_service": {
+          "process_ratios": [
+            0.9983236050566595,
+            0.9920559253698619,
+            1.0012241236832597,
+            1.0018396092205129
+          ],
+          "geomean": 0.998353281255457,
+          "process_log_t95": [
+            0.99124833217668,
+            1.005509156322983
+          ]
+        },
+        "per_run_pinning_shadow_over_static_p99": {
+          "process_ratios": [
+            1.5481885859498117,
+            2.113067183236153,
+            1.0526909350525757,
+            1.051536456980395
+          ],
+          "geomean": 1.3794805960806142,
+          "process_log_t95": [
+            0.8061355396757062,
+            2.36060391994187
+          ]
+        },
+        "reused_pinning_shadow_over_static_p99": {
+          "process_ratios": [
+            0.9974247646138672,
+            0.9994426579712516,
+            1.0010021987511666,
+            1.003764703009137
+          ],
+          "geomean": 1.0004059015371145,
+          "process_log_t95": [
+            0.9961609169697805,
+            1.0046689754449054
+          ]
+        },
+        "p99_ratio_of_ratios": 0.7252047650249462
+      },
+      "size_tiered": {
+        "per_run_pinning_shadow_over_static_service": {
+          "process_ratios": [
+            1.1418473973493868,
+            1.1415149851898108,
+            1.1238029628503599,
+            1.1312543985048746
+          ],
+          "geomean": 1.1345797662942436,
+          "process_log_t95": [
+            1.1207733465590257,
+            1.1485562625453694
+          ]
+        },
+        "reused_pinning_shadow_over_static_service": {
+          "process_ratios": [
+            1.0025141911151583,
+            0.9996392417586619,
+            1.0005964398398324,
+            0.9988198154464001
+          ],
+          "geomean": 1.0003914748599076,
+          "process_log_t95": [
+            0.9978655645473824,
+            1.002923779042643
+          ]
+        },
+        "per_run_pinning_shadow_over_static_p99": {
+          "process_ratios": [
+            3.5701046467508344,
+            3.7042408594794627,
+            2.751166951680761,
+            2.7463419615341564
+          ],
+          "geomean": 3.161643735925055,
+          "process_log_t95": [
+            2.4420636212588636,
+            4.093255812787256
+          ]
+        },
+        "reused_pinning_shadow_over_static_p99": {
+          "process_ratios": [
+            1.0028278344177948,
+            1.0006066466400783,
+            1.0005420374627076,
+            1.0058101300319016
+          ],
+          "geomean": 1.0024443609045572,
+          "process_log_t95": [
+            0.9985063760266123,
+            1.006397876704759
+          ]
+        },
+        "p99_ratio_of_ratios": 0.3170643009248654
+      },
+      "compact": {
+        "per_run_pinning_shadow_over_static_service": {
+          "process_ratios": [
+            1.0206572817260826,
+            1.0142350982035686,
+            1.0176332203804461,
+            1.01979312914683
+          ],
+          "geomean": 1.018076664067839,
+          "process_log_t95": [
+            1.013530804006665,
+            1.0226429130936243
+          ]
+        },
+        "reused_pinning_shadow_over_static_service": {
+          "process_ratios": [
+            1.0009768137816222,
+            0.9990191418227736,
+            1.0000087957146202,
+            0.9996440604146303
+          ],
+          "geomean": 0.9999119514277872,
+          "process_log_t95": [
+            0.9986097740439063,
+            1.0012158268382478
+          ]
+        },
+        "per_run_pinning_shadow_over_static_p99": {
+          "process_ratios": [
+            1.0013476503214918,
+            1.0073231822020234,
+            1.001860998543384,
+            1.0035397792418572
+          ],
+          "geomean": 1.0035151735210512,
+          "process_log_t95": [
+            0.9992255284806522,
+            1.0078232338781614
+          ]
+        },
+        "reused_pinning_shadow_over_static_p99": {
+          "process_ratios": [
+            0.999659699741273,
+            1.0003159753642017,
+            1.0005676738848528,
+            1.0010340132850495
+          ],
+          "geomean": 1.00039421747355,
+          "process_log_t95": [
+            0.9994827662866423,
+            1.0013064998336347
+          ]
+        },
+        "p99_ratio_of_ratios": 0.9968899762257201
+      }
+    },
+    "64": {
+      "all_delta": {
+        "per_run_pinning_shadow_over_static_service": {
+          "process_ratios": [
+            1.0090969427369774,
+            1.0053189143074013,
+            1.0069600576184037,
+            1.006946878414705
+          ],
+          "geomean": 1.0070798046229044,
+          "process_log_t95": [
+            1.004617896579555,
+            1.0095477457970936
+          ]
+        },
+        "reused_pinning_shadow_over_static_service": {
+          "process_ratios": [
+            0.9989114269707564,
+            0.9966485303740645,
+            1.0001677110426874,
+            1.000441579987631
+          ],
+          "geomean": 0.9990411887448569,
+          "process_log_t95": [
+            0.9962917539391448,
+            1.0017982110787413
+          ]
+        },
+        "per_run_pinning_shadow_over_static_p99": {
+          "process_ratios": [
+            1.1934574832702638,
+            1.17463160525522,
+            1.1793905507203992,
+            1.1812240559542568
+          ],
+          "geomean": 1.1821555899956377,
+          "process_log_t95": [
+            1.1694932197807895,
+            1.194955058585018
+          ]
+        },
+        "reused_pinning_shadow_over_static_p99": {
+          "process_ratios": [
+            0.9997916055407033,
+            0.975539727583281,
+            1.0000068846833938,
+            1.0001207703670116
+          ],
+          "geomean": 0.9938079594804281,
+          "process_log_t95": [
+            0.974438464369777,
+            1.0135624736092725
+          ]
+        },
+        "p99_ratio_of_ratios": 0.8406744153568612
+      },
+      "periodic2": {
+        "per_run_pinning_shadow_over_static_service": {
+          "process_ratios": [
+            1.0093605299883874,
+            1.0152683837713437,
+            1.0176575075904566,
+            1.0148840432028599
+          ],
+          "geomean": 1.0142880559141247,
+          "process_log_t95": [
+            1.0087129989863566,
+            1.0198939256298505
+          ]
+        },
+        "reused_pinning_shadow_over_static_service": {
+          "process_ratios": [
+            1.0046337866221815,
+            1.002914225054012,
+            1.0014630549606371,
+            1.0015691888075395
+          ],
+          "geomean": 1.0026442436795018,
+          "process_log_t95": [
+            1.0002909340727357,
+            1.0050030897416296
+          ]
+        },
+        "per_run_pinning_shadow_over_static_p99": {
+          "process_ratios": [
+            1.2013091821609467,
+            1.1852067079669109,
+            1.2154418839604162,
+            1.1855581906010872
+          ],
+          "geomean": 1.1968135366436836,
+          "process_log_t95": [
+            1.1740517312367709,
+            1.220016634177338
+          ]
+        },
+        "reused_pinning_shadow_over_static_p99": {
+          "process_ratios": [
+            1.0272661462948764,
+            1.0108946928754894,
+            1.0286125469991192,
+            1.016356249978857
+          ],
+          "geomean": 1.020755357646891,
+          "process_log_t95": [
+            1.007188919999231,
+            1.034504529860821
+          ]
+        },
+        "p99_ratio_of_ratios": 0.8528942282099131
+      },
+      "size_tiered": {
+        "per_run_pinning_shadow_over_static_service": {
+          "process_ratios": [
+            1.0142727534580593,
+            1.0114998004399778,
+            1.0196726064846209,
+            1.0125596983110787
+          ],
+          "geomean": 1.0144963470768142,
+          "process_log_t95": [
+            1.0087409389356168,
+            1.0202845929086348
+          ]
+        },
+        "reused_pinning_shadow_over_static_service": {
+          "process_ratios": [
+            0.9961498987552345,
+            1.000497404588464,
+            1.0015758774654613,
+            1.000599679381094
+          ],
+          "geomean": 0.9997035153800627,
+          "process_log_t95": [
+            0.995856303740607,
+            1.003565589643115
+          ]
+        },
+        "per_run_pinning_shadow_over_static_p99": {
+          "process_ratios": [
+            1.231482177466848,
+            1.177956786077557,
+            1.298591251024639,
+            1.219814154192195
+          ],
+          "geomean": 1.2312065225594193,
+          "process_log_t95": [
+            1.154668677453194,
+            1.3128177206091278
+          ]
+        },
+        "reused_pinning_shadow_over_static_p99": {
+          "process_ratios": [
+            0.9982952937658991,
+            1.0018544235815192,
+            1.0022320159673521,
+            1.0009050052386037
+          ],
+          "geomean": 1.0008205039418516,
+          "process_log_t95": [
+            0.9979992415679391,
+            1.0036497417941523
+          ]
+        },
+        "p99_ratio_of_ratios": 0.812877844296468
+      },
+      "compact": {
+        "per_run_pinning_shadow_over_static_service": {
+          "process_ratios": [
+            1.0174843567811505,
+            1.0079320968869947,
+            1.0191702032716867,
+            1.0166013442518007
+          ],
+          "geomean": 1.015287650031252,
+          "process_log_t95": [
+            1.0073073425917,
+            1.0233311807832302
+          ]
+        },
+        "reused_pinning_shadow_over_static_service": {
+          "process_ratios": [
+            1.0013044399060023,
+            1.0013054165713922,
+            1.001899285856079,
+            1.0014589951462856
+          ],
+          "geomean": 1.0014920047981815,
+          "process_log_t95": [
+            1.001044946429499,
+            1.0019392628194226
+          ]
+        },
+        "per_run_pinning_shadow_over_static_p99": {
+          "process_ratios": [
+            1.2407221705478466,
+            1.1609865082659228,
+            1.179706156335168,
+            1.1800481540854584
+          ],
+          "geomean": 1.1899914000988003,
+          "process_log_t95": [
+            1.1365918755127717,
+            1.2458997489052441
+          ]
+        },
+        "reused_pinning_shadow_over_static_p99": {
+          "process_ratios": [
+            1.0141882315046469,
+            1.0132009830625621,
+            1.0115127658889818,
+            1.0094688902292182
+          ],
+          "geomean": 1.0120911311890592,
+          "process_log_t95": [
+            1.0088035269658238,
+            1.0153894494326563
+          ]
+        },
+        "p99_ratio_of_ratios": 0.8505028953192681
+      }
+    }
+  },
+  "before_summary_sha256": "f2e6bde11e490b2e792be24dbe8798c703d6f864ffa3e9811a1ff1a6476662bb",
+  "after_summary_sha256": "4f17d92ead8e397d90cf75e6a941ad4ab286401e9cac4cc67544ba7f9f778d42",
+  "analysis_sha256": "470fd572ed08d874b07ad0b7d8e56e660158a704f0b2b5c5ce97f71ec7038067",
+  "limitations": [
+    "separate consecutive campaigns, not randomized interleaving",
+    "ratio-of-ratios is descriptive, not a formal causal confidence interval",
+    "growth visible epoch changes with publication speed and must not be treated as same-input latency comparison",
+    "maintenance overlap exposure changes naturally when writer speed changes"
+  ]
+}
