@@ -1,0 +1,7 @@
+work,primary_source,relationship,current_coverage,allowed_claim
+Swamidass and Baldi 2007,https://doi.org/10.1021/ci600358f,Exact fingerprint similarity bounds and pruning,PRIMARY_ABSTRACT_REVIEWED,BitBound is existing work
+Bitmap Filter,https://arxiv.org/abs/1711.07295,Bitwise filters for exact set similarity joins,PRIMARY_ABSTRACT_REVIEWED,Our uncompressed per-feature bitmap is not its hashed filter replication
+GENIE,https://arxiv.org/abs/1603.08390,GPU inverted-index similarity framework,PRIMARY_ABSTRACT_REVIEWED,GPU postings alone are not novel
+Multibit tree,https://www.tabei-lab.org/similarity-search-toolkit,Exact fingerprint content indexing,IMPLEMENTATION_ENTRY_LOCATED_NOT_BENCHMARKED,Strong same-contract baseline still required
+ChemDex,Aung and Ng 2010 SSDBM,Exact fingerprint indexing,NOT_COVERED,No dominance or novelty conclusion
+chemfp,https://chemfp.com/docs/chemfp_shardsearch_command.html,Mature fingerprint search,OFFICIAL_DOC_ENTRY_REVIEWED_NOT_BENCHMARKED,License and complete integer tuple adaptation remain unchecked

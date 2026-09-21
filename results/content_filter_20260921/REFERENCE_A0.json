@@ -1,0 +1,13 @@
+{
+  "status": "PASS_REFERENCE_ONLY",
+  "small_universe_pairs": 261120,
+  "method_query_comparisons": 10602,
+  "D": [
+    8,
+    256,
+    2048
+  ],
+  "elapsed_s": 2.872819770127535,
+  "native_uint64_capacity_sanitizer": "NOT_COVERED",
+  "source_sha256": "5e95244b274b19e7b3ed28a436ad50b8c20d458c4fbf6c12fb646292275e3fb3"
+}

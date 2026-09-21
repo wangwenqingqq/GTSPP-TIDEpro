@@ -1,0 +1,80 @@
+{
+  "status": "CPU_ORACLES_READY_NOT_A_GO",
+  "artifacts": [
+    {
+      "lane": "surechembl-2026-08-25-256",
+      "split": "dev",
+      "m": 7,
+      "n": 10,
+      "file": "surechembl-2026-08-25-256_dev_7_10.bin",
+      "bytes": 3504,
+      "sha256": "bd3df595f2a92ad3e03e66a85e10fe58eb5888f6e6ea2f36613c1d8c4591222d"
+    },
+    {
+      "lane": "surechembl-2026-08-25-256",
+      "split": "dev",
+      "m": 4,
+      "n": 5,
+      "file": "surechembl-2026-08-25-256_dev_4_5.bin",
+      "bytes": 2256,
+      "sha256": "9784d64092ddfe520efb2e2b6c9d9c037b4c25ce3a5db094f25284993ec566bc"
+    },
+    {
+      "lane": "surechembl-2026-08-25-256",
+      "split": "a_screen",
+      "m": 7,
+      "n": 10,
+      "file": "surechembl-2026-08-25-256_a_screen_7_10.bin",
+      "bytes": 5392,
+      "sha256": "0749396c60d550740f1de5660722a844df6f7e7a71c6c71566f40d6583bd2406"
+    },
+    {
+      "lane": "surechembl-2026-08-25-256",
+      "split": "a_screen",
+      "m": 4,
+      "n": 5,
+      "file": "surechembl-2026-08-25-256_a_screen_4_5.bin",
+      "bytes": 4272,
+      "sha256": "f2f33a5670fd71d1226e3daa67cd0b3cdbe6749b6eb4fa6a1b4d08453a886a5b"
+    },
+    {
+      "lane": "chembl-37-fps-2048",
+      "split": "dev",
+      "m": 7,
+      "n": 10,
+      "file": "chembl-37-fps-2048_dev_7_10.bin",
+      "bytes": 2672,
+      "sha256": "b165848cebfe0026478856a6e931ceff6c1bfe057ea8d150f666a4c28ed17b29"
+    },
+    {
+      "lane": "chembl-37-fps-2048",
+      "split": "dev",
+      "m": 4,
+      "n": 5,
+      "file": "chembl-37-fps-2048_dev_4_5.bin",
+      "bytes": 2176,
+      "sha256": "fe820df73a235a35d8249f26a996366362fcca7fa5e3aa9048113e10238951fe"
+    },
+    {
+      "lane": "chembl-37-fps-2048",
+      "split": "a_screen",
+      "m": 7,
+      "n": 10,
+      "file": "chembl-37-fps-2048_a_screen_7_10.bin",
+      "bytes": 5552,
+      "sha256": "70ffce85261142c35787961b5a905779997bbdba289d7be601bbb01ef8e0b491"
+    },
+    {
+      "lane": "chembl-37-fps-2048",
+      "split": "a_screen",
+      "m": 4,
+      "n": 5,
+      "file": "chembl-37-fps-2048_a_screen_4_5.bin",
+      "bytes": 4512,
+      "sha256": "595c95b5d0bf60a78f7a0f43b7252bed239ca1d5a90fee33516d2f90ab6f2ad0"
+    }
+  ],
+  "binary_sha256": "8d6d673fc0f323e1cba19ddee5fd7463ada223e731ca5dc30c1ea606a1993ecc",
+  "max_rss_self_bytes": 55017472,
+  "max_rss_children_bytes": 124248064
+}

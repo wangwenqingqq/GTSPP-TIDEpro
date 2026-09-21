@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "files": [
+    {
+      "lane": "surechembl-2026-08-25-256",
+      "role": "ids",
+      "sha256": "6c73e787773c71a8905cd9c97717adaebb7b8009efc0b351dccb62cac225f400"
+    },
+    {
+      "lane": "surechembl-2026-08-25-256",
+      "role": "fingerprints",
+      "sha256": "f21949c23b8dc82d6f271cba3f5ab65704f7fb0160c6d03cf3429d5cc8b8c855"
+    },
+    {
+      "lane": "chembl-37-fps-2048",
+      "role": "official_fps",
+      "sha256": "c33bfac42abfea96840279ec35eeb3364c1063aa3e35c02369618beaf6389529"
+    },
+    {
+      "lane": "chembl-37-fps-2048",
+      "role": "ids",
+      "sha256": "09ee72beb1ffe67d262410b59d3f599a9b00b529f430127170a7a5c5fe2faca0"
+    },
+    {
+      "lane": "chembl-37-fps-2048",
+      "role": "fingerprints",
+      "sha256": "ca1805d258e8bdd8bf500273c593229234e55b6e18615b7131698642854cfb11"
+    }
+  ]
+}

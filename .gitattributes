@@ -1,0 +1,2 @@
+# Preserve the byte identity of the measured CSV (standard CRLF records).
+results/content_filter_20260921/reference_dev_correctness.csv -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

@@ -1,0 +1,14 @@
+{
+  "status": "PASS_EXACT_EXPORT_TRANSFORMATION",
+  "original_host_manifest_sha256": "0fba8b9022b086ffeaa58a86233ebe48b7a2d25ed27fe226aeaf71ea042759f7",
+  "published_manifest_sha256": "5b7e1cd7e6fe08d305ee15d294b0c22fa55184ca58bd8449b4b9a03e577a4576",
+  "path_fields_converted": 28,
+  "transformation": [
+    "Rename old_query_files.path to source_label and remove the host-local filesystem prefix; retain the corpus-relative suffix.",
+    "Add original_host_manifest_sha256 and export_note at the root.",
+    "Leave every other value unchanged; independently checked by deep equality."
+  ],
+  "executed_freeze_retained_unchanged": true,
+  "source_bitstrings_transformed": false,
+  "original_evidence_retained_outside_git": true
+}

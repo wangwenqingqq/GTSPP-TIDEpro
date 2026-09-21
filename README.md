@@ -1,5 +1,17 @@
 # GTSPP & TIDEpro
 
+## Content-filter branch checkpoint — 2026-09-21
+
+The registered CPU reference dev grid passed all 4,608 complete-result checks
+on SureChEMBL256 and official ChEMBL37 FPS2048. This is **not A_GO**: complete
+access accounting, dev selection, A-screen and native GPU tests remain pending.
+See the [checkpoint report](results/content_filter_20260921/DECISION.md) and
+[reproduction instructions](experiments/content_filter/README.md). This branch
+does not alter the historical Gate 0–2 evidence below. Repository visibility
+was verified public on 2026-09-21; older private labels are historical.
+
+## Historical Gate 0–2 record
+
 **状态：2026-09-15 Gate 2 已完成固定到达与开发集有限调参实验；普通增长策略达标，但一次静态基线超限，不能宣称 Gate 全部通过。没有新算法必要性的证据。**
 
 远端为 `wangwenqingqq/GTSPP-TIDEpro`（private）。原 `GTSPP` 未修改。

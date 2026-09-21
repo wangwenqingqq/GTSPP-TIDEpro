@@ -1,0 +1,10 @@
+{
+  "status": "LOCAL_EQUALS_EXECUTED_REMOTE_SOURCE",
+  "sha256": {
+    "reference_semantics.py": "5e95244b274b19e7b3ed28a436ad50b8c20d458c4fbf6c12fb646292275e3fb3",
+    "prepare_inputs.py": "c97ef2916e002c98d1c0f64c621899a8e9108d6062ab6f81997694e261960bb4",
+    "oracle.cpp": "56311737e6e1229bb6ce452577287d8956e30436398905552d48d2bd4c8eb0fd",
+    "run_oracle.py": "10f1858982607cea17a4415c8c5861d9ae87d04c5390e5403963c56fb69b3328",
+    "check_dev.py": "13462193e90bccde41847395ef262e802cc90e15f222351e04b3de97d414661a"
+  }
+}

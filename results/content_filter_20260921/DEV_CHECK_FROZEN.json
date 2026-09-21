@@ -1,0 +1,49 @@
+{
+  "input_sha256": "0fba8b9022b086ffeaa58a86233ebe48b7a2d25ed27fe226aeaf71ea042759f7",
+  "oracle_manifest_sha256": "26aeb20deb3940920e7c300d5b79b232c408fb36db4ff6496830a9215dd8de96",
+  "implementation_sha256": "5e95244b274b19e7b3ed28a436ad50b8c20d458c4fbf6c12fb646292275e3fb3",
+  "runner_sha256": "13462193e90bccde41847395ef262e802cc90e15f222351e04b3de97d414661a",
+  "split": "dev_only",
+  "gpu": "NOT_USED",
+  "purpose": "full real-data reference semantics, not access/timing selection",
+  "V": "R0 full raw verifier",
+  "configs": [
+    [
+      "R0",
+      null
+    ],
+    [
+      "R1",
+      "natural"
+    ],
+    [
+      "R1",
+      "descending"
+    ],
+    [
+      "R2",
+      4
+    ],
+    [
+      "R2",
+      8
+    ],
+    [
+      "B",
+      1
+    ],
+    [
+      "B",
+      8
+    ],
+    [
+      "P",
+      1
+    ],
+    [
+      "P",
+      8
+    ]
+  ],
+  "cpu_limit_s": 86400
+}

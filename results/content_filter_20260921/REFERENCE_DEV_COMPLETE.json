@@ -1,0 +1,12 @@
+{
+  "status": "REFERENCE_DEV_PASS_NOT_A_GO",
+  "method_query_threshold_rows": 4608,
+  "csv_sha256": "4d5417c7ee48eb458afa74ab7123b59260808b17063bd2d8817f934edd66afa7",
+  "max_rss_bytes": 287199232,
+  "missing_gates": [
+    "complete_access_accounting",
+    "dev_selection",
+    "A-screen",
+    "native_GPU"
+  ]
+}

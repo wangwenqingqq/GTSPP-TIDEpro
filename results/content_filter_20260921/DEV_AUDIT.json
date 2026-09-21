@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "rows": 4608,
+  "rows_per_lane": {
+    "surechembl-2026-08-25-256": 2304,
+    "chembl-37-fps-2048": 2304
+  },
+  "complete_grids_checked": 512,
+  "paired_B_P_checks": 1024,
+  "error_rows": 0,
+  "csv_sha256": "4d5417c7ee48eb458afa74ab7123b59260808b17063bd2d8817f934edd66afa7",
+  "scope": "Complete CPU reference dev grid; no access-model or native-system claim"
+}
